@@ -305,7 +305,7 @@ function App() {
           )}
 
           {/* Footer */}
-          <Footer theme={theme} />
+          <Footer theme={theme} isDevMode={isProductionMode ? false : isDevMode} />
         </div>
 
         {/* Table of Contents or RightPanel(s) - Hide for API Reference pages */}
