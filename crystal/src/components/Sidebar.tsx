@@ -1215,8 +1215,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <nav style={{ display: 'flex', flexDirection: 'column', gap: '4px', paddingTop: '16px' }}>
           {items.map(item => renderNestedItem(item, 0))}
 
-          {/* Add New Group button - Only in Dev Mode */}
-          {isDevMode && !isAPIReferenceTab() && (
+          {/* Add New Group button - Only in Dev Mode and when there's a tab */}
+          {isDevMode && !isAPIReferenceTab() && currentTab && (
             <button
               onClick={() => setShowGroupModal(true)}
               style={{

@@ -74,11 +74,12 @@ function chunkPage(
 ): PageChunk[] {
   const chunks: PageChunk[] = []
 
-  if (!pageContent || !pageContent.content) {
+  if (!pageContent) {
     return chunks
   }
 
-  const doc = pageContent.content
+  // Handle both direct Tiptap doc structure and wrapped structure
+  const doc = pageContent.type === 'doc' ? pageContent : pageContent.content
   if (!doc || !doc.content || !Array.isArray(doc.content)) {
     return chunks
   }

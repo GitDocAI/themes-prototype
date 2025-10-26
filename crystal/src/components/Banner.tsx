@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { configLoader } from '../services/configLoader'
 
 interface BannerProps {
@@ -9,8 +9,8 @@ export const Banner: React.FC<BannerProps> = ({ theme }) => {
   // Load banner config synchronously to prevent layout shift
   const config = configLoader.getConfig()
   const hasBanner = config?.banner?.message ? true : false
-  const message = hasBanner ? config.banner.message : ''
-  const bannerColor = hasBanner ? config.banner.colors[theme] : '#3b82f6'
+  const message = hasBanner ? config!.banner!.message : ''
+  const bannerColor = hasBanner ? config!.banner!.colors[theme] : '#3b82f6'
 
   const [visible, setVisible] = useState(true)
 

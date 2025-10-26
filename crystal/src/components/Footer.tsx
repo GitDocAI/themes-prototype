@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { configLoader } from '../services/configLoader'
 import { useConfig } from '../hooks/useConfig'
 
@@ -259,13 +260,14 @@ export const Footer: React.FC<FooterProps> = ({ theme, isDevMode = false }) => {
   }
 
   return (
-    <footer
-      style={{
-        borderTop: `0.5px solid ${colors.border}`,
-        padding: '24px 32px',
-        marginTop: '60px',
-        minHeight: '120px', // Reserve space to prevent layout shift
-        contain: 'layout' // Prevent layout from affecting other elements
+    <>
+      <footer
+        style={{
+          borderTop: `0.5px solid ${colors.border}`,
+          padding: '24px 32px',
+          marginTop: '60px',
+          minHeight: '120px', // Reserve space to prevent layout shift
+          contain: 'layout' // Prevent layout from affecting other elements
       }}
     >
       <div
@@ -545,180 +547,212 @@ export const Footer: React.FC<FooterProps> = ({ theme, isDevMode = false }) => {
           </small>
         </div>
       </div>
+    </footer>
 
-      {/* Footer Item Editor Modal */}
-      {editingItemIndex !== null && (
+    {/* Footer Item Editor Modal - Rendered outside using Portal */}
+    {editingItemIndex !== null && createPortal(
+      <div
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 10000,
+        }}
+        onClick={handleCancelEdit}
+      >
         <div
           style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 10000,
+            backgroundColor: theme === 'light' ? '#ffffff' : '#1f2937',
+            borderRadius: '12px',
+            padding: '32px',
+            minWidth: '400px',
+            maxWidth: '500px',
+            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
           }}
-          onClick={handleCancelEdit}
+          onClick={(e) => e.stopPropagation()}
         >
-          <div
-            style={{
-              backgroundColor: theme === 'light' ? '#ffffff' : '#1f2937',
-              borderRadius: '12px',
-              padding: '32px',
-              minWidth: '400px',
-              maxWidth: '500px',
-              boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Header */}
-            <div style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: '24px'
+          {/* Header */}
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginBottom: '24px'
+          }}>
+            <h2
+              style={{
+                margin: 0,
+                fontSize: '20px',
+                fontWeight: '600',
+                color: theme === 'light' ? '#111827' : '#f9fafb',
+              }}
+            >
+              {editingItemIndex === -1 ? 'Add Footer Item' : 'Edit Footer Item'}
+            </h2>
+            <button
+              onClick={handleCancelEdit}
+              style={{
+                background: 'transparent',
+                border: 'none',
+                cursor: 'pointer',
+                color: theme === 'light' ? '#6b7280' : '#9ca3af',
+                fontSize: '24px',
+                padding: '4px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
+              <i className="pi pi-times"></i>
+            </button>
+          </div>
+
+          {/* Content */}
+          {/* Type Selector */}
+          <div style={{ marginBottom: '16px' }}>
+            <label style={{
+              display: 'block',
+              fontSize: '14px',
+              fontWeight: '500',
+              color: theme === 'light' ? '#374151' : '#d1d5db',
+              marginBottom: '8px',
             }}>
-              <h2
-                style={{
-                  margin: 0,
-                  fontSize: '20px',
-                  fontWeight: '600',
-                  color: theme === 'light' ? '#111827' : '#f9fafb',
-                }}
-              >
-                {editingItemIndex === -1 ? 'Add Footer Item' : 'Edit Footer Item'}
-              </h2>
-              <button
-                onClick={handleCancelEdit}
-                style={{
-                  background: 'transparent',
-                  border: 'none',
-                  cursor: 'pointer',
-                  color: theme === 'light' ? '#6b7280' : '#9ca3af',
-                  fontSize: '24px',
-                  padding: '4px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}
-              >
-                <i className="pi pi-times"></i>
-              </button>
-            </div>
-
-            {/* Content */}
-            {/* Type Selector */}
-            <div style={{ marginBottom: '16px' }}>
-              <label style={{
-                display: 'block',
+              Social Media Type
+            </label>
+            <select
+              value={editingType}
+              onChange={(e) => setEditingType(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '10px 12px',
+                backgroundColor: theme === 'light' ? '#f9fafb' : '#374151',
+                border: `1px solid ${theme === 'light' ? '#d1d5db' : '#4b5563'}`,
+                borderRadius: '6px',
+                color: theme === 'light' ? '#374151' : '#e5e7eb',
                 fontSize: '14px',
-                fontWeight: '500',
-                color: theme === 'light' ? '#374151' : '#d1d5db',
-                marginBottom: '8px',
-              }}>
-                Social Media Type
-              </label>
-              <select
-                value={editingType}
-                onChange={(e) => setEditingType(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '10px 12px',
-                  backgroundColor: theme === 'light' ? '#f9fafb' : '#374151',
-                  border: `1px solid ${theme === 'light' ? '#d1d5db' : '#4b5563'}`,
-                  borderRadius: '6px',
-                  color: theme === 'light' ? '#374151' : '#e5e7eb',
-                  fontSize: '14px',
-                  outline: 'none',
-                }}
+                outline: 'none',
+              }}
+            >
+              <option
+                value="github"
+                disabled={editingItemIndex === -1 && footerItems.some(item => item.type === 'github')}
               >
-                <option value="github">GitHub</option>
-                <option value="linkedin">LinkedIn</option>
-                <option value="x">X (Twitter)</option>
-                <option value="facebook">Facebook</option>
-                <option value="youtube">YouTube</option>
-                <option value="instagram">Instagram</option>
-                <option value="link">Other Link</option>
-              </select>
-            </div>
+                GitHub {editingItemIndex === -1 && footerItems.some(item => item.type === 'github') ? '(Already added)' : ''}
+              </option>
+              <option
+                value="linkedin"
+                disabled={editingItemIndex === -1 && footerItems.some(item => item.type === 'linkedin')}
+              >
+                LinkedIn {editingItemIndex === -1 && footerItems.some(item => item.type === 'linkedin') ? '(Already added)' : ''}
+              </option>
+              <option
+                value="x"
+                disabled={editingItemIndex === -1 && footerItems.some(item => item.type === 'x')}
+              >
+                X (Twitter) {editingItemIndex === -1 && footerItems.some(item => item.type === 'x') ? '(Already added)' : ''}
+              </option>
+              <option
+                value="facebook"
+                disabled={editingItemIndex === -1 && footerItems.some(item => item.type === 'facebook')}
+              >
+                Facebook {editingItemIndex === -1 && footerItems.some(item => item.type === 'facebook') ? '(Already added)' : ''}
+              </option>
+              <option
+                value="youtube"
+                disabled={editingItemIndex === -1 && footerItems.some(item => item.type === 'youtube')}
+              >
+                YouTube {editingItemIndex === -1 && footerItems.some(item => item.type === 'youtube') ? '(Already added)' : ''}
+              </option>
+              <option
+                value="instagram"
+                disabled={editingItemIndex === -1 && footerItems.some(item => item.type === 'instagram')}
+              >
+                Instagram {editingItemIndex === -1 && footerItems.some(item => item.type === 'instagram') ? '(Already added)' : ''}
+              </option>
+              <option value="link">Other Link</option>
+            </select>
+          </div>
 
-            <div style={{ marginBottom: '24px' }}>
-              <label style={{
-                display: 'block',
+          <div style={{ marginBottom: '24px' }}>
+            <label style={{
+              display: 'block',
+              fontSize: '14px',
+              fontWeight: '500',
+              color: theme === 'light' ? '#374151' : '#d1d5db',
+              marginBottom: '8px',
+            }}>
+              URL
+            </label>
+            <input
+              type="text"
+              value={editingReference}
+              onChange={(e) => setEditingReference(e.target.value)}
+              placeholder="e.g., https://github.com/username"
+              style={{
+                width: '100%',
+                padding: '10px 12px',
+                backgroundColor: theme === 'light' ? '#f9fafb' : '#374151',
+                border: `1px solid ${theme === 'light' ? '#d1d5db' : '#4b5563'}`,
+                borderRadius: '6px',
+                color: theme === 'light' ? '#374151' : '#e5e7eb',
                 fontSize: '14px',
-                fontWeight: '500',
-                color: theme === 'light' ? '#374151' : '#d1d5db',
-                marginBottom: '8px',
-              }}>
-                URL
-              </label>
-              <input
-                type="text"
-                value={editingReference}
-                onChange={(e) => setEditingReference(e.target.value)}
-                placeholder="e.g., https://github.com/username"
-                style={{
-                  width: '100%',
-                  padding: '10px 12px',
-                  backgroundColor: theme === 'light' ? '#f9fafb' : '#374151',
-                  border: `1px solid ${theme === 'light' ? '#d1d5db' : '#4b5563'}`,
-                  borderRadius: '6px',
-                  color: theme === 'light' ? '#374151' : '#e5e7eb',
-                  fontSize: '14px',
-                  outline: 'none',
-                }}
-                autoFocus
-              />
-            </div>
+                outline: 'none',
+              }}
+              autoFocus
+            />
+          </div>
 
-            {/* Action Buttons */}
-            <div style={{ display: 'flex', gap: '12px' }}>
-              <button
-                onClick={handleCancelEdit}
-                style={{
-                  flex: 1,
-                  padding: '10px 20px',
-                  backgroundColor: theme === 'light' ? '#f3f4f6' : '#374151',
-                  color: theme === 'light' ? '#374151' : '#f3f4f6',
-                  border: 'none',
-                  borderRadius: '8px',
-                  cursor: 'pointer',
-                  fontSize: '14px',
-                  fontWeight: '600',
-                  transition: 'all 0.2s',
-                }}
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleSaveItem}
-                style={{
-                  flex: 1,
-                  padding: '10px 20px',
-                  backgroundColor: '#3b82f6',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '8px',
-                  cursor: 'pointer',
-                  fontSize: '14px',
-                  fontWeight: '600',
-                  transition: 'all 0.2s',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '8px'
-                }}
-              >
-                <i className="pi pi-check"></i>
-                Save Changes
-              </button>
-            </div>
+          {/* Action Buttons */}
+          <div style={{ display: 'flex', gap: '12px' }}>
+            <button
+              onClick={handleCancelEdit}
+              style={{
+                flex: 1,
+                padding: '10px 20px',
+                backgroundColor: theme === 'light' ? '#f3f4f6' : '#374151',
+                color: theme === 'light' ? '#374151' : '#f3f4f6',
+                border: 'none',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                fontSize: '14px',
+                fontWeight: '600',
+                transition: 'all 0.2s',
+              }}
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleSaveItem}
+              style={{
+                flex: 1,
+                padding: '10px 20px',
+                backgroundColor: '#3b82f6',
+                color: 'white',
+                border: 'none',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                fontSize: '14px',
+                fontWeight: '600',
+                transition: 'all 0.2s',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px'
+              }}
+            >
+              <i className="pi pi-check"></i>
+              Save Changes
+            </button>
           </div>
         </div>
-      )}
-    </footer>
+      </div>,
+      document.body
+    )}
+    </>
   )
 }

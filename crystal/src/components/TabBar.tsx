@@ -258,10 +258,6 @@ export const TabBar: React.FC<TabBarProps> = ({
     }
   }
 
-  if (!tabs || tabs.length === 0) {
-    return null
-  }
-
   // Convert hex to rgba
   const hexToRgba = (hex: string, alpha: number) => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
@@ -272,6 +268,124 @@ export const TabBar: React.FC<TabBarProps> = ({
       return `rgba(${r}, ${g}, ${b}, ${alpha})`
     }
     return `rgba(255, 255, 255, ${alpha})`
+  }
+
+  if (!tabs || tabs.length === 0) {
+    // In dev mode, show different UI based on whether there are versions
+    if (isDevMode) {
+      // If no version is selected (no versions exist), show a message
+      if (!currentVersion) {
+        return (
+          <div
+            style={{
+              position: 'sticky',
+              top: '64px',
+              zIndex: 900,
+              width: '100%',
+              margin: '0',
+              backgroundColor: bgColor ? hexToRgba(bgColor, 0.7) : 'rgba(255, 255, 255, 0.7)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              paddingTop: '12px',
+              paddingBottom: '12px'
+            }}
+          >
+            <div
+              style={{
+                width: '100%',
+                maxWidth: '1525px',
+                margin: '0 auto',
+                padding: '0 20px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
+              <div
+                style={{
+                  padding: '12px 24px',
+                  backgroundColor: theme === 'light' ? '#fef3c7' : '#78350f',
+                  color: theme === 'light' ? '#92400e' : '#fde68a',
+                  borderRadius: '8px',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}
+              >
+                <i className="pi pi-info-circle" style={{ fontSize: '14px' }}></i>
+                <span>Add versions first to create tabs</span>
+              </div>
+            </div>
+          </div>
+        )
+      }
+
+      // If version exists but no tabs, show button to add first tab
+      return (
+        <div
+          style={{
+            position: 'sticky',
+            top: '64px',
+            zIndex: 900,
+            width: '100%',
+            margin: '0',
+            backgroundColor: bgColor ? hexToRgba(bgColor, 0.7) : 'rgba(255, 255, 255, 0.7)',
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
+            paddingTop: '12px',
+            paddingBottom: '12px'
+          }}
+        >
+          <div
+            style={{
+              width: '100%',
+              maxWidth: '1525px',
+              margin: '0 auto',
+              padding: '0 20px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px'
+            }}
+          >
+            <button
+              onClick={handleAddNewTab}
+              style={{
+                padding: '8px 16px',
+                backgroundColor: '#3b82f6',
+                color: '#ffffff',
+                border: 'none',
+                borderRadius: '9999px',
+                fontSize: '14px',
+                fontWeight: '500',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                whiteSpace: 'nowrap',
+                transition: 'all 0.2s',
+                outline: 'none',
+                boxShadow: '0 2px 4px rgba(59, 130, 246, 0.4)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#2563eb'
+                e.currentTarget.style.boxShadow = '0 3px 8px rgba(59, 130, 246, 0.5)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#3b82f6'
+                e.currentTarget.style.boxShadow = '0 2px 4px rgba(59, 130, 246, 0.4)'
+              }}
+              title="Add first tab"
+            >
+              <i className="pi pi-plus" style={{ fontSize: '12px' }}></i>
+              <span>Add Tab</span>
+            </button>
+          </div>
+        </div>
+      )
+    }
+    return null
   }
 
   return (

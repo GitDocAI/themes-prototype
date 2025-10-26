@@ -241,6 +241,55 @@ export const VersionSwitcher: React.FC<VersionSwitcherProps> = ({
   }
 
   if (!versions || versions.length === 0) {
+    // In dev mode, show button to add first version
+    if (isDevMode) {
+      return (
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <button
+            onClick={() => setShowAddModal(true)}
+            style={{
+              padding: '6px 16px',
+              backgroundColor: '#3b82f6',
+              color: '#ffffff',
+              border: 'none',
+              borderRadius: '9999px',
+              fontSize: '14px',
+              fontWeight: '500',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              whiteSpace: 'nowrap',
+              transition: 'all 0.2s',
+              outline: 'none',
+              boxShadow: '0 2px 4px rgba(59, 130, 246, 0.4)'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#2563eb'
+              e.currentTarget.style.boxShadow = '0 3px 8px rgba(59, 130, 246, 0.5)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = '#3b82f6'
+              e.currentTarget.style.boxShadow = '0 2px 4px rgba(59, 130, 246, 0.4)'
+            }}
+            title="Add first version"
+          >
+            <i className="pi pi-plus" style={{ fontSize: '12px' }}></i>
+            <span>Add Version</span>
+          </button>
+
+          {/* Add Version Modal */}
+          {showAddModal && (
+            <VersionModal
+              theme={theme}
+              onClose={() => setShowAddModal(false)}
+              onSave={handleAddVersion}
+              mode="add"
+            />
+          )}
+        </div>
+      )
+    }
     return null
   }
 

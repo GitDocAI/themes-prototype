@@ -155,7 +155,11 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   const handleResultClick = (result: SearchResult) => {
     const { chunk } = result
 
-    // Navigate to the page and section
+    // Navigate to the page and section with search query for highlighting
+    const url = new URL(window.location.href)
+    url.searchParams.set('highlight', query)
+    window.history.pushState({}, '', url)
+
     onNavigate(chunk.pagePath, chunk.headingId)
 
     // Close modal

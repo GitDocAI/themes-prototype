@@ -17,6 +17,7 @@ import type { NavigationItem } from './types/navigation'
 import { useTheme } from './hooks/useTheme'
 import { useRightPanelContent } from './hooks/useRightPanelContent'
 import { useConfig } from './hooks/useConfig'
+import { useTextHighlight } from './hooks/useTextHighlight'
 import 'primereact/resources/themes/lara-light-blue/theme.css'
 import 'primeicons/primeicons.css'
 import './App.css'
@@ -24,6 +25,7 @@ import './App.css'
 function App() {
   const { theme, toggleTheme, isConfigLoaded } = useTheme()
   const { updateTrigger } = useConfig() // Subscribe to config changes
+  useTextHighlight() // Enable search term highlighting from URL
   const viteMode = import.meta.env.VITE_MODE || 'production'
   const isProductionMode = viteMode === 'production'
   const isDevModeEnv = viteMode === 'dev'
