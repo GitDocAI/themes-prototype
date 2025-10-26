@@ -83,14 +83,71 @@
       ]
     },
     {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Choose your preferred package manager to install Acme CLI:"
+        }
+      ]
+    },
+    {
+      "type": "codeGroup",
+      "attrs": {
+        "tabs": [
+          {
+            "language": "bash",
+            "label": "npm",
+            "code": "# Global installation\nnpm install -g acme-cli\n\n# Or as a dev dependency\nnpm install --save-dev acme-cli"
+          },
+          {
+            "language": "bash",
+            "label": "yarn",
+            "code": "# Global installation\nyarn global add acme-cli\n\n# Or as a dev dependency\nyarn add --dev acme-cli"
+          },
+          {
+            "language": "bash",
+            "label": "pnpm",
+            "code": "# Global installation\npnpm add -g acme-cli\n\n# Or as a dev dependency\npnpm add -D acme-cli"
+          }
+        ]
+      }
+    },
+    {
+      "type": "warningBlock",
+      "attrs": {
+        "type": "warning"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ],
+              "text": "Important: "
+            },
+            {
+              "type": "text",
+              "text": "If you're using Node.js 16 or earlier, please upgrade to Node.js 18+ for full compatibility with Acme CLI."
+            }
+          ]
+        }
+      ]
+    },
+    {
       "type": "heading",
       "attrs": {
-        "level": 3
+        "level": 2
       },
       "content": [
         {
           "type": "text",
-          "text": "Method 1: NPM Package (Recommended)"
+          "text": "Platform Comparison"
         }
       ]
     },
@@ -99,52 +156,158 @@
       "content": [
         {
           "type": "text",
-          "text": "Install Acme CLI globally or as a dev dependency:"
+          "text": "Acme Platform can be deployed on various operating systems and environments:"
         }
       ]
     },
     {
-      "type": "codeBlock",
-      "attrs": {
-        "language": "bash"
-      },
+      "type": "columnGroup",
       "content": [
         {
-          "type": "text",
-          "text": "# Global installation\nnpm install -g acme-cli\n\n# Or as a dev dependency\nnpm install --save-dev acme-cli"
-        }
-      ]
-    },
-    {
-      "type": "heading",
-      "attrs": {
-        "level": 3
-      },
-      "content": [
+          "type": "column",
+          "content": [
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "macOS / Linux"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Recommended for development and production environments."
+                }
+              ]
+            },
+            {
+              "type": "bulletList",
+              "content": [
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Native Unix support"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Better Docker integration"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Faster build times"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
         {
-          "type": "text",
-          "text": "Method 2: Using npx"
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "Run Acme CLI without installing:"
-        }
-      ]
-    },
-    {
-      "type": "codeBlock",
-      "attrs": {
-        "language": "bash"
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": "npx acme-cli init"
+          "type": "column",
+          "content": [
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 3
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Windows"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Full support with WSL2 for best experience."
+                }
+              ]
+            },
+            {
+              "type": "bulletList",
+              "content": [
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Use WSL2 for optimal performance"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "PowerShell and CMD supported"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Git Bash recommended"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     },

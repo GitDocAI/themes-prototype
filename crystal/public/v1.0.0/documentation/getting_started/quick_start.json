@@ -608,6 +608,267 @@
       ]
     },
     {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Platform Features Overview"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Explore the different features available in each tier:"
+        }
+      ]
+    },
+    {
+      "type": "tabsBlock",
+      "content": [
+        {
+          "type": "tabBlock",
+          "attrs": {
+            "label": "Free Tier",
+            "isActive": true
+          },
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Perfect for getting started and small projects:"
+                }
+              ]
+            },
+            {
+              "type": "tableBlock",
+              "attrs": {
+                "scrollable": false,
+                "scrollHeight": 400,
+                "pagination": true,
+                "rowsPerPage": 10,
+                "rowsPerPageOptions": [5, 10, 25],
+                "columns": [
+                  { "id": "feature", "label": "Feature", "sortable": true, "filterable": true },
+                  { "id": "limit", "label": "Limit", "sortable": false, "filterable": false },
+                  { "id": "details", "label": "Details", "sortable": false, "filterable": false }
+                ],
+                "rows": [
+                  { "id": "row1", "feature": "Projects", "limit": "3", "details": "Host up to 3 active projects" },
+                  { "id": "row2", "feature": "Deployments", "limit": "10/month", "details": "Manual or automatic deployments" },
+                  { "id": "row3", "feature": "Bandwidth", "limit": "100 GB/month", "details": "Data transfer included" },
+                  { "id": "row4", "feature": "Build Minutes", "limit": "500/month", "details": "CI/CD pipeline execution time" }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "tabBlock",
+          "attrs": {
+            "label": "Pro Tier"
+          },
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "For professional developers and growing teams:"
+                }
+              ]
+            },
+            {
+              "type": "tableBlock",
+              "attrs": {
+                "scrollable": false,
+                "scrollHeight": 400,
+                "pagination": true,
+                "rowsPerPage": 10,
+                "rowsPerPageOptions": [5, 10, 25],
+                "columns": [
+                  { "id": "feature", "label": "Feature", "sortable": true, "filterable": true },
+                  { "id": "limit", "label": "Limit", "sortable": false, "filterable": false },
+                  { "id": "details", "label": "Details", "sortable": false, "filterable": false }
+                ],
+                "rows": [
+                  { "id": "row1", "feature": "Projects", "limit": "Unlimited", "details": "No project limits" },
+                  { "id": "row2", "feature": "Deployments", "limit": "Unlimited", "details": "Deploy as often as needed" },
+                  { "id": "row3", "feature": "Bandwidth", "limit": "1 TB/month", "details": "High data transfer allowance" },
+                  { "id": "row4", "feature": "Build Minutes", "limit": "3,000/month", "details": "Extended CI/CD capabilities" },
+                  { "id": "row5", "feature": "Team Members", "limit": "10", "details": "Collaborate with your team" }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "tabBlock",
+          "attrs": {
+            "label": "Enterprise"
+          },
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Custom solutions for large organizations:"
+                }
+              ]
+            },
+            {
+              "type": "bulletList",
+              "content": [
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "marks": [
+                            {
+                              "type": "bold"
+                            }
+                          ],
+                          "text": "Unlimited everything"
+                        },
+                        {
+                          "type": "text",
+                          "text": " - No restrictions on usage"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "marks": [
+                            {
+                              "type": "bold"
+                            }
+                          ],
+                          "text": "Dedicated support"
+                        },
+                        {
+                          "type": "text",
+                          "text": " - 24/7 priority assistance"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "marks": [
+                            {
+                              "type": "bold"
+                            }
+                          ],
+                          "text": "Custom SLA"
+                        },
+                        {
+                          "type": "text",
+                          "text": " - Guaranteed uptime agreements"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "marks": [
+                            {
+                              "type": "bold"
+                            }
+                          ],
+                          "text": "On-premise deployment"
+                        },
+                        {
+                          "type": "text",
+                          "text": " - Host on your infrastructure"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "dangerBlock",
+      "attrs": {
+        "type": "danger"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ],
+              "text": "Rate Limits: "
+            },
+            {
+              "type": "text",
+              "text": "Exceeding your tier's limits may result in temporary service suspension. Upgrade your plan to avoid interruptions."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "infoBlock",
+      "attrs": {
+        "type": "info"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "All tiers include automatic SSL certificates, DDoS protection, and 99.9% uptime guarantee."
+            }
+          ]
+        }
+      ]
+    },
+    {
       "type": "horizontalRule"
     },
     {

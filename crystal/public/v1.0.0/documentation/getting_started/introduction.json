@@ -213,6 +213,166 @@
       "content": [
         {
           "type": "text",
+          "text": "Core Features"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Explore the powerful features that make Acme Platform the choice of modern development teams:"
+        }
+      ]
+    },
+    {
+      "type": "cardBlock",
+      "attrs": {
+        "title": "CI/CD Automation",
+        "icon": "code",
+        "href": "/v1.0.0/documentation/core_features/cicd"
+      }
+    },
+    {
+      "type": "cardBlock",
+      "attrs": {
+        "title": "Cloud Integration",
+        "icon": "cloud",
+        "href": "/v1.0.0/documentation/core_features/cloud_services"
+      }
+    },
+    {
+      "type": "cardBlock",
+      "attrs": {
+        "title": "Security & Compliance",
+        "icon": "shield",
+        "href": "/v1.0.0/documentation/core_features/security_configuration"
+      }
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Frequently Asked Questions"
+        }
+      ]
+    },
+    {
+      "type": "accordionBlock",
+      "content": [
+        {
+          "type": "accordionTab",
+          "attrs": {
+            "header": "What cloud providers does Acme Platform support?"
+          },
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Acme Platform supports all major cloud providers including AWS, Microsoft Azure, Google Cloud Platform, and DigitalOcean. You can deploy to multiple clouds simultaneously for high availability."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "accordionTab",
+          "attrs": {
+            "header": "Is there a free tier available?"
+          },
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Yes! Our free tier includes:"
+                }
+              ]
+            },
+            {
+              "type": "bulletList",
+              "content": [
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Up to 3 projects"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "100 build minutes per month"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Community support"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "accordionTab",
+          "attrs": {
+            "header": "How does pricing work?"
+          },
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "We charge based on actual usage - compute time, storage, and bandwidth. No hidden fees or surprise charges. Check our pricing page for detailed information."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
           "text": "How It Works"
         }
       ]
