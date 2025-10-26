@@ -1,0 +1,196 @@
+{
+  "title": "Update Application",
+  "method": "PUT",
+  "path": "/api/applications/{id}",
+  "summary": "Update an existing application by its ID",
+  "description": "Update an existing application by its ID",
+  "operationId": "updateApplication",
+  "tags": ["Applications"],
+  "deprecated": false,
+  "parameters": [
+    {
+      "name": "id",
+      "in": "path",
+      "description": "Application ID",
+      "required": true,
+      "schema": {
+        "type": "string",
+        "format": "uuid",
+        "example": "550e8400-e29b-41d4-a716-446655440000"
+      }
+    }
+  ],
+  "requestBody": {
+    "required": true,
+    "description": "Application update request",
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Application name",
+              "minLength": 1,
+              "maxLength": 100,
+              "example": "my-updated-app"
+            },
+            "description": {
+              "type": "string",
+              "description": "Application description",
+              "maxLength": 500,
+              "example": "An updated description for the application"
+            },
+            "environment": {
+              "type": "object",
+              "description": "Environment variables",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "example": {
+                "NODE_ENV": "production",
+                "API_KEY": "updated_secret_key"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "description": "Application updated successfully",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "required": ["id", "name", "status", "region", "runtime", "createdAt", "updatedAt"],
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Unique identifier for the application",
+                "example": "550e8400-e29b-41d4-a716-446655440000"
+              },
+              "name": {
+                "type": "string",
+                "description": "Application name",
+                "example": "my-updated-app"
+              },
+              "description": {
+                "type": "string",
+                "description": "Application description",
+                "example": "An updated description for the application"
+              },
+              "region": {
+                "type": "string",
+                "description": "Deployment region",
+                "example": "us-east-1"
+              },
+              "runtime": {
+                "type": "string",
+                "description": "Runtime environment",
+                "enum": ["nodejs18", "nodejs20", "python3.9", "python3.11", "java17"],
+                "example": "nodejs20"
+              },
+              "status": {
+                "type": "string",
+                "description": "Application status",
+                "enum": ["running", "stopped", "deploying", "failed"],
+                "example": "running"
+              },
+              "environment": {
+                "type": "object",
+                "description": "Environment variables",
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "example": {
+                  "NODE_ENV": "production",
+                  "API_KEY": "updated_secret_key"
+                }
+              },
+              "owner": {
+                "type": "object",
+                "required": ["id", "name", "email", "role"],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "format": "uuid",
+                    "example": "123e4567-e89b-12d3-a456-426614174000"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "John Doe"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "example": "john.doe@example.com"
+                  },
+                  "role": {
+                    "type": "string",
+                    "enum": ["admin", "developer", "viewer"],
+                    "example": "admin"
+                  }
+                }
+              },
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "description": "Application URL",
+                "example": "https://my-updated-app.example.com"
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Application creation timestamp",
+                "example": "2024-01-15T10:30:00Z"
+              },
+              "updatedAt": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Application last update timestamp",
+                "example": "2024-01-15T14:45:00Z"
+              }
+            }
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "Bad request - Invalid input data"
+    },
+    "401": {
+      "description": "Unauthorized - Authentication required"
+    },
+    "404": {
+      "description": "Not found - Application does not exist"
+    },
+    "500": {
+      "description": "Internal server error"
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    },
+    {
+      "ApiKeyAuth": []
+    }
+  ],
+  "securitySchemas": {
+    "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer",
+      "bearerFormat": "JWT",
+      "description": "JWT Bearer token authentication"
+    },
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "X-API-Key",
+      "description": "API key for authentication"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+# Binaries
+gitdocai-backend
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary
+*.test
+
+# Output of the go coverage tool
+*.out
+
+# Environment variables
+.env
+
+# Go workspace file
+go.work
+
+# Backups
+*.backup
+*.backup.json

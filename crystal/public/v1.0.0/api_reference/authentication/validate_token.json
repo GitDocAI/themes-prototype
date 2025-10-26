@@ -1,0 +1,119 @@
+{
+  "title": "Validate Token",
+  "method": "POST",
+  "path": "/api/auth/validate",
+  "summary": "Validate an API token or JWT",
+  "description": "Validate an API token or JWT",
+  "operationId": "validateToken",
+  "tags": ["Authentication"],
+  "deprecated": false,
+  "requestBody": {
+    "required": true,
+    "description": "Token validation request",
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "object",
+          "required": ["token"],
+          "properties": {
+            "token": {
+              "type": "string",
+              "description": "The token to validate",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "description": "Token is valid",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "required": ["valid"],
+            "properties": {
+              "valid": {
+                "type": "boolean",
+                "description": "Whether the token is valid",
+                "example": true
+              },
+              "user": {
+                "type": "object",
+                "required": ["id", "name", "email", "role"],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "format": "uuid",
+                    "example": "123e4567-e89b-12d3-a456-426614174000"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "John Doe"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "example": "john.doe@example.com"
+                  },
+                  "role": {
+                    "type": "string",
+                    "enum": ["admin", "developer", "viewer"],
+                    "example": "admin"
+                  }
+                }
+              },
+              "scopes": {
+                "type": "array",
+                "description": "Token permissions",
+                "items": {
+                  "type": "string"
+                },
+                "example": ["applications:read", "applications:write", "system:read"]
+              },
+              "expiresAt": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Token expiration time",
+                "example": "2024-04-15T10:30:00Z"
+              }
+            }
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "Bad request - Invalid input data"
+    },
+    "401": {
+      "description": "Unauthorized - Invalid or expired token"
+    },
+    "500": {
+      "description": "Internal server error"
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    },
+    {
+      "ApiKeyAuth": []
+    }
+  ],
+  "securitySchemas": {
+    "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer",
+      "bearerFormat": "JWT",
+      "description": "JWT Bearer token authentication"
+    },
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "X-API-Key",
+      "description": "API key for authentication"
+    }
+  }
+}

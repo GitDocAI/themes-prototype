@@ -1,0 +1,815 @@
+{
+  "content": {
+    "content": [
+      {
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "text": "dsadsdy",
+            "type": "text"
+          }
+        ],
+        "type": "heading"
+      },
+      {
+        "attrs": {
+          "language": "python"
+        },
+        "content": [
+          {
+            "text": "\"yaml\": \"asdasdasd\"",
+            "type": "text"
+          }
+        ],
+        "type": "codeBlock"
+      },
+      {
+        "content": [
+          {
+            "text": "asdsdasdasdcx",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "content": [
+          {
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ],
+            "text": "Ahora comenzaremos a escribir",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "content": [
+          {
+            "marks": [
+              {
+                "type": "italic"
+              }
+            ],
+            "text": "Y esto es cursiva",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "content": [
+          {
+            "marks": [
+              {
+                "type": "strike"
+              }
+            ],
+            "text": "Subrayada",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "content": [
+          {
+            "marks": [
+              {
+                "type": "underline"
+              }
+            ],
+            "text": "Subrayaya",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "content": [
+          {
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "text": "In line codec",
+            "type": "text"
+          },
+          {
+            "text": " asdasdasdasdasdasda",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "content": [
+          {
+            "content": [
+              {
+                "content": [
+                  {
+                    "text": "Hola que tak",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "type": "listItem"
+          },
+          {
+            "content": [
+              {
+                "content": [
+                  {
+                    "text": "me llamo paco",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "type": "listItem"
+          }
+        ],
+        "type": "bulletList"
+      },
+      {
+        "attrs": {
+          "start": 1,
+          "type": null
+        },
+        "content": [
+          {
+            "content": [
+              {
+                "content": [
+                  {
+                    "text": "asdasd",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "type": "listItem"
+          },
+          {
+            "content": [
+              {
+                "content": [
+                  {
+                    "text": "asdasd",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "type": "listItem"
+          }
+        ],
+        "type": "orderedList"
+      },
+      {
+        "content": [
+          {
+            "attrs": {
+              "checked": true
+            },
+            "content": [
+              {
+                "content": [
+                  {
+                    "text": "asdasd",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "type": "taskItem"
+          },
+          {
+            "attrs": {
+              "checked": true
+            },
+            "content": [
+              {
+                "content": [
+                  {
+                    "text": "hola como esats",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "type": "taskItem"
+          }
+        ],
+        "type": "taskList"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "content": [
+          {
+            "marks": [
+              {
+                "attrs": {
+                  "class": "custom-link",
+                  "href": "/v1.0.0/documentation/getting_started/introduction#dsadsdy",
+                  "rel": "noopener noreferrer nofollow",
+                  "target": "_blank"
+                },
+                "type": "link"
+              }
+            ],
+            "text": "Mi link",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      },
+      {
+        "attrs": {
+          "id": null,
+          "type": "note"
+        },
+        "content": [
+          {
+            "content": [
+              {
+                "text": "Note content",
+                "type": "text"
+              }
+            ],
+            "type": "paragraph"
+          }
+        ],
+        "type": "noteBlock"
+      },
+      {
+        "attrs": {
+          "id": null,
+          "type": "warning"
+        },
+        "content": [
+          {
+            "content": [
+              {
+                "text": "Warning content",
+                "type": "text"
+              }
+            ],
+            "type": "paragraph"
+          }
+        ],
+        "type": "warningBlock"
+      },
+      {
+        "attrs": {
+          "id": null,
+          "type": "danger"
+        },
+        "content": [
+          {
+            "content": [
+              {
+                "text": "Danger content",
+                "type": "text"
+              }
+            ],
+            "type": "paragraph"
+          }
+        ],
+        "type": "dangerBlock"
+      },
+      {
+        "attrs": {
+          "id": null,
+          "type": "info"
+        },
+        "content": [
+          {
+            "content": [
+              {
+                "text": "Info content",
+                "type": "text"
+              }
+            ],
+            "type": "paragraph"
+          }
+        ],
+        "type": "infoBlock"
+      },
+      {
+        "attrs": {
+          "files": [
+            {
+              "code": "def calculate():\n  pritf(\"hello\")",
+              "filename": "example.py",
+              "language": "python"
+            },
+            {
+              "code": "si si este soy yo",
+              "filename": "newfile.js",
+              "language": "yaml"
+            }
+          ]
+        },
+        "type": "codeGroup"
+      },
+      {
+        "attrs": {
+          "columnCount": 2
+        },
+        "content": [
+          {
+            "attrs": {
+              "width": "auto"
+            },
+            "content": [
+              {
+                "attrs": {
+                  "content": "Here you will generate code",
+                  "href": "https://gitdoc.ai",
+                  "icon": "pi pi-star",
+                  "iconAlign": "left",
+                  "id": "card-1761435969956",
+                  "title": "AI Generation"
+                },
+                "type": "cardBlock"
+              }
+            ],
+            "type": "column"
+          },
+          {
+            "attrs": {
+              "width": "auto"
+            },
+            "content": [
+              {
+                "attrs": {
+                  "content": "Cybersecurity",
+                  "href": "https://utmstack.com",
+                  "icon": "pi pi-cloud",
+                  "iconAlign": "right",
+                  "id": "card-1761436044740",
+                  "title": "Siem Solution"
+                },
+                "type": "cardBlock"
+              }
+            ],
+            "type": "column"
+          }
+        ],
+        "type": "columnGroup"
+      },
+      {
+        "attrs": {
+          "id": "accordion-1761484615279",
+          "multiple": true
+        },
+        "content": [
+          {
+            "attrs": {
+              "disabled": false,
+              "header": "Esto es un tab 1",
+              "isActive": false
+            },
+            "content": [
+              {
+                "attrs": {
+                  "id": null,
+                  "type": "tip"
+                },
+                "content": [
+                  {
+                    "content": [
+                      {
+                        "text": "Tip content",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "type": "tipBlock"
+              },
+              {
+                "attrs": {
+                  "files": [
+                    {
+                      "code": "asdasdasd",
+                      "filename": "example.js",
+                      "language": "javascript"
+                    }
+                  ]
+                },
+                "type": "codeGroup"
+              },
+              {
+                "type": "paragraph"
+              }
+            ],
+            "type": "accordionTab"
+          },
+          {
+            "attrs": {
+              "disabled": false,
+              "header": "Esto es el tab 2",
+              "isActive": false
+            },
+            "content": [
+              {
+                "attrs": {
+                  "level": 1
+                },
+                "content": [
+                  {
+                    "text": "Content 2",
+                    "type": "text"
+                  }
+                ],
+                "type": "heading"
+              },
+              {
+                "content": [
+                  {
+                    "attrs": {
+                      "checked": false
+                    },
+                    "content": [
+                      {
+                        "content": [
+                          {
+                            "text": "uno",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ],
+                    "type": "taskItem"
+                  },
+                  {
+                    "attrs": {
+                      "checked": true
+                    },
+                    "content": [
+                      {
+                        "content": [
+                          {
+                            "text": "dos",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ],
+                    "type": "taskItem"
+                  },
+                  {
+                    "attrs": {
+                      "checked": false
+                    },
+                    "content": [
+                      {
+                        "content": [
+                          {
+                            "text": "tres",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ],
+                    "type": "taskItem"
+                  }
+                ],
+                "type": "taskList"
+              },
+              {
+                "type": "paragraph"
+              }
+            ],
+            "type": "accordionTab"
+          }
+        ],
+        "type": "accordionBlock"
+      },
+      {
+        "attrs": {
+          "id": "endpoint-1761486060283",
+          "method": "GET",
+          "path": "/api/endpoint"
+        },
+        "type": "endpointBlock"
+      },
+      {
+        "attrs": {
+          "alignment": "center",
+          "id": "tabs-1761487707941"
+        },
+        "content": [
+          {
+            "attrs": {
+              "icon": "pi-star",
+              "isActive": false,
+              "label": "Este es mi tab"
+            },
+            "content": [
+              {
+                "content": [
+                  {
+                    "text": "aqui escribo normal",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              },
+              {
+                "content": [
+                  {
+                    "attrs": {
+                      "checked": false
+                    },
+                    "content": [
+                      {
+                        "content": [
+                          {
+                            "text": "item 1",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ],
+                    "type": "taskItem"
+                  },
+                  {
+                    "attrs": {
+                      "checked": false
+                    },
+                    "content": [
+                      {
+                        "content": [
+                          {
+                            "text": "item 2",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ],
+                    "type": "taskItem"
+                  },
+                  {
+                    "attrs": {
+                      "checked": true
+                    },
+                    "content": [
+                      {
+                        "content": [
+                          {
+                            "text": "item 3",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ],
+                    "type": "taskItem"
+                  },
+                  {
+                    "attrs": {
+                      "checked": true
+                    },
+                    "content": [
+                      {
+                        "content": [
+                          {
+                            "text": "item 4",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ],
+                    "type": "taskItem"
+                  },
+                  {
+                    "attrs": {
+                      "checked": true
+                    },
+                    "content": [
+                      {
+                        "content": [
+                          {
+                            "text": "item 5",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ],
+                    "type": "taskItem"
+                  },
+                  {
+                    "attrs": {
+                      "checked": true
+                    },
+                    "content": [
+                      {
+                        "content": [
+                          {
+                            "text": "item 6",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ],
+                    "type": "taskItem"
+                  }
+                ],
+                "type": "taskList"
+              },
+              {
+                "attrs": {
+                  "content": "asidaisdasdasdasdasd",
+                  "href": "",
+                  "icon": "pi pi-star",
+                  "iconAlign": "left",
+                  "id": "card-1761489136368",
+                  "title": "New Card"
+                },
+                "type": "cardBlock"
+              },
+              {
+                "type": "paragraph"
+              }
+            ],
+            "type": "tabBlock"
+          },
+          {
+            "attrs": {
+              "icon": "pi-heart",
+              "isActive": true,
+              "label": "Este es mi tab 2"
+            },
+            "content": [
+              {
+                "attrs": {
+                  "level": 1
+                },
+                "content": [
+                  {
+                    "text": "Hola que tal",
+                    "type": "text"
+                  }
+                ],
+                "type": "heading"
+              },
+              {
+                "attrs": {
+                  "id": null,
+                  "type": "tip"
+                },
+                "content": [
+                  {
+                    "content": [
+                      {
+                        "text": "Tip content",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "type": "tipBlock"
+              },
+              {
+                "attrs": {
+                  "files": [
+                    {
+                      "code": "asdasdasdasd",
+                      "filename": "example.js",
+                      "language": "javascript"
+                    }
+                  ]
+                },
+                "type": "codeGroup"
+              },
+              {
+                "type": "paragraph"
+              }
+            ],
+            "type": "tabBlock"
+          }
+        ],
+        "type": "tabsBlock"
+      },
+      {
+        "attrs": {
+          "columns": [
+            {
+              "filterable": false,
+              "id": "col1",
+              "label": "Column 1",
+              "sortable": false
+            },
+            {
+              "filterable": false,
+              "id": "col2",
+              "label": "Column 2",
+              "sortable": false
+            },
+            {
+              "filterable": true,
+              "id": "col3",
+              "label": "Column 3",
+              "sortable": false
+            },
+            {
+              "filterable": true,
+              "id": "col1761491860228",
+              "label": "Mi nueva",
+              "sortable": true
+            }
+          ],
+          "pagination": true,
+          "rows": [
+            {
+              "col1": "Data 1-1",
+              "col1761491860228": "Hola hoasdasd",
+              "col2": "Data 1-2",
+              "col3": "Data 1-3",
+              "id": "row1"
+            },
+            {
+              "col1": "Data 2-1",
+              "col1761491860228": "Como estas",
+              "col2": "Data 2-2",
+              "col3": "Data 2-3",
+              "id": "row2"
+            },
+            {
+              "col1": "Data 3-1",
+              "col1761491860228": "Mi nombre",
+              "col2": "Data 3-2",
+              "col3": "Data 3-3",
+              "id": "row3"
+            },
+            {
+              "col1": "Uno",
+              "col1761491860228": "cuadtro",
+              "col2": "Dos",
+              "col3": "ter",
+              "id": "row1761491889364"
+            },
+            {
+              "col1": "Aqui",
+              "col1761491860228": "asdasda",
+              "col2": "asdasd",
+              "col3": "asdasda",
+              "id": "row1761491908124"
+            }
+          ],
+          "rowsPerPage": 5,
+          "rowsPerPageOptions": [
+            1,
+            2,
+            5
+          ],
+          "scrollHeight": 500,
+          "scrollable": true
+        },
+        "type": "tableBlock"
+      },
+      {
+        "attrs": {
+          "alt": "Image",
+          "caption": "",
+          "src": "/assets/1761493998652-WhatsApp_Image_2025-08-24_at_10.26.21_AM.jpeg",
+          "type": "local"
+        },
+        "type": "imageBlock"
+      },
+      {
+        "type": "paragraph"
+      }
+    ],
+    "type": "doc"
+  }
+}

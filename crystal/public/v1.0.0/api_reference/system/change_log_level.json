@@ -1,0 +1,71 @@
+{
+  "title": "Change Log Level",
+  "method": "PUT",
+  "path": "/management/logs",
+  "summary": "Update the logging level for system components",
+  "description": "Update the logging level for system components",
+  "operationId": "changeLogLevel",
+  "tags": ["System"],
+  "deprecated": false,
+  "requestBody": {
+    "required": true,
+    "description": "Log level update request",
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "object",
+          "required": ["level"],
+          "properties": {
+            "level": {
+              "type": "string",
+              "description": "New log level",
+              "enum": ["DEBUG", "INFO", "WARN", "ERROR"],
+              "example": "INFO"
+            },
+            "component": {
+              "type": "string",
+              "description": "System component to update (optional, updates all if not specified)",
+              "example": "api-gateway"
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "204": {
+      "description": "Log level updated successfully"
+    },
+    "400": {
+      "description": "Bad request - Invalid input data"
+    },
+    "401": {
+      "description": "Unauthorized - Authentication required"
+    },
+    "500": {
+      "description": "Internal server error"
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    },
+    {
+      "ApiKeyAuth": []
+    }
+  ],
+  "securitySchemas": {
+    "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer",
+      "bearerFormat": "JWT",
+      "description": "JWT Bearer token authentication"
+    },
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "X-API-Key",
+      "description": "API key for authentication"
+    }
+  }
+}

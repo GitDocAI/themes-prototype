@@ -1,0 +1,222 @@
+{
+  "title": "Get All Applications",
+  "method": "GET",
+  "path": "/api/applications",
+  "summary": "Retrieve a list of all applications with optional filtering and pagination",
+  "description": "Retrieve a list of all applications with optional filtering and pagination",
+  "operationId": "getAllApplications",
+  "tags": ["Applications"],
+  "deprecated": false,
+  "parameters": [
+    {
+      "name": "page",
+      "in": "query",
+      "description": "Page number for pagination",
+      "required": false,
+      "schema": {
+        "type": "integer",
+        "default": 0,
+        "minimum": 0,
+        "example": 0
+      }
+    },
+    {
+      "name": "size",
+      "in": "query",
+      "description": "Number of applications per page",
+      "required": false,
+      "schema": {
+        "type": "integer",
+        "default": 20,
+        "minimum": 1,
+        "maximum": 100,
+        "example": 20
+      }
+    },
+    {
+      "name": "status",
+      "in": "query",
+      "description": "Filter by application status",
+      "required": false,
+      "schema": {
+        "type": "string",
+        "enum": ["running", "stopped", "deploying", "failed"],
+        "example": "running"
+      }
+    },
+    {
+      "name": "name",
+      "in": "query",
+      "description": "Filter by application name",
+      "required": false,
+      "schema": {
+        "type": "string",
+        "example": "my-app"
+      }
+    }
+  ],
+  "responses": {
+    "200": {
+      "description": "Successful response",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "applications": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["id", "name", "status", "region", "runtime", "createdAt", "updatedAt"],
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for the application",
+                      "example": "550e8400-e29b-41d4-a716-446655440000"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Application name",
+                      "example": "my-awesome-app"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Application description",
+                      "example": "A sample application for demonstration"
+                    },
+                    "region": {
+                      "type": "string",
+                      "description": "Deployment region",
+                      "example": "us-east-1"
+                    },
+                    "runtime": {
+                      "type": "string",
+                      "description": "Runtime environment",
+                      "enum": ["nodejs18", "nodejs20", "python3.9", "python3.11", "java17"],
+                      "example": "nodejs20"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "Application status",
+                      "enum": ["running", "stopped", "deploying", "failed"],
+                      "example": "running"
+                    },
+                    "environment": {
+                      "type": "object",
+                      "description": "Environment variables",
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "example": {
+                        "NODE_ENV": "production",
+                        "API_KEY": "secret_key_here"
+                      }
+                    },
+                    "owner": {
+                      "type": "object",
+                      "required": ["id", "name", "email", "role"],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "format": "uuid",
+                          "example": "123e4567-e89b-12d3-a456-426614174000"
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "John Doe"
+                        },
+                        "email": {
+                          "type": "string",
+                          "format": "email",
+                          "example": "john.doe@example.com"
+                        },
+                        "role": {
+                          "type": "string",
+                          "enum": ["admin", "developer", "viewer"],
+                          "example": "admin"
+                        }
+                      }
+                    },
+                    "url": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "Application URL",
+                      "example": "https://my-awesome-app.example.com"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Application creation timestamp",
+                      "example": "2024-01-15T10:30:00Z"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Application last update timestamp",
+                      "example": "2024-01-15T10:30:00Z"
+                    }
+                  }
+                }
+              },
+              "pagination": {
+                "type": "object",
+                "required": ["page", "size", "total", "totalPages"],
+                "properties": {
+                  "page": {
+                    "type": "integer",
+                    "description": "Current page number",
+                    "example": 0
+                  },
+                  "size": {
+                    "type": "integer",
+                    "description": "Number of items per page",
+                    "example": 20
+                  },
+                  "total": {
+                    "type": "integer",
+                    "description": "Total number of items",
+                    "example": 150
+                  },
+                  "totalPages": {
+                    "type": "integer",
+                    "description": "Total number of pages",
+                    "example": 8
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "401": {
+      "description": "Unauthorized - Authentication required"
+    },
+    "500": {
+      "description": "Internal server error"
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    },
+    {
+      "ApiKeyAuth": []
+    }
+  ],
+  "securitySchemas": {
+    "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer",
+      "bearerFormat": "JWT",
+      "description": "JWT Bearer token authentication"
+    },
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "X-API-Key",
+      "description": "API key for authentication"
+    }
+  }
+}

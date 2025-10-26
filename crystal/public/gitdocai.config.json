@@ -1,0 +1,175 @@
+{
+  "background": {
+    "colors": {
+      "dark": "#0a0f1c",
+      "light": "#fafbfc"
+    }
+  },
+  "banner": {
+    "colors": {
+      "dark": "#8b5cf6",
+      "light": "#3b82f6"
+    },
+    "message": "✨ Welcome to Crystal Documentation - Modern, Elegant, Fast"
+  },
+  "colors": {
+    "dark": "#8b5cf6",
+    "light": "#3b82f6"
+  },
+  "defaultThemeMode": "light",
+  "description": "Modern, elegant documentation with crystal-clear design and seamless user experience.",
+  "favicon": "/assets/favicon.svg",
+  "footer": [
+    {
+      "reference": "https://github.com/crystal-docs",
+      "type": "github"
+    }
+  ],
+  "logo": {
+    "dark": "/assets/1761495809114-dark.svg",
+    "light": "/assets/1761495800264-light.svg"
+  },
+  "name": "Crystal",
+  "navbar": [
+    {
+      "label": "utmstack",
+      "reference": "asdasda",
+      "type": "link"
+    },
+    {
+      "label": "GitDocAI",
+      "reference": "https://gitdoc.ai",
+      "type": "link"
+    }
+  ],
+  "navigation": {
+    "versions": [
+      {
+        "tabs": [
+          {
+            "items": [
+              {
+                "children": [
+                  {
+                    "page": "/v1.0.1/documentation/core_features/security.mdx",
+                    "title": "Security",
+                    "type": "page"
+                  },
+                  {
+                    "page": "/v1.0.1/documentation/core_features/integrations.mdx",
+                    "title": "Integrations",
+                    "type": "page"
+                  }
+                ],
+                "title": "Core Features",
+                "type": "group"
+              },
+              {
+                "children": [
+                  {
+                    "page": "/v1.0.0/documentation/getting_started/introduction.mdx",
+                    "title": "Platform",
+                    "type": "page"
+                  },
+                  {
+                    "page": "/v1.0.0/documentation/getting_started/installation.mdx",
+                    "title": "Installation",
+                    "type": "page"
+                  }
+                ],
+                "title": "Getting Started",
+                "type": "group"
+              }
+            ],
+            "tab": "Documentation"
+          },
+          {
+            "items": [
+              {
+                "children": [
+                  {
+                    "method": "GET",
+                    "page": "/v1.0.0/api_reference/applications/get_all_applications.mdx",
+                    "reference": "/api/applications",
+                    "title": "Get All Applications",
+                    "type": "openapi"
+                  },
+                  {
+                    "method": "POST",
+                    "page": "/v1.0.0/api_reference/applications/create_application.mdx",
+                    "reference": "/api/applications",
+                    "title": "Create Application",
+                    "type": "openapi"
+                  },
+                  {
+                    "method": "PUT",
+                    "page": "/v1.0.0/api_reference/applications/update_application.mdx",
+                    "reference": "/api/applications/{id}",
+                    "title": "Update Application",
+                    "type": "openapi"
+                  },
+                  {
+                    "method": "DELETE",
+                    "page": "/v1.0.0/api_reference/applications/delete_application.mdx",
+                    "reference": "/api/applications/{id}",
+                    "title": "Delete Application",
+                    "type": "openapi"
+                  }
+                ],
+                "title": "Applications",
+                "type": "group"
+              },
+              {
+                "children": [
+                  {
+                    "method": "POST",
+                    "page": "/v1.0.0/api_reference/authentication/generate_api_key.mdx",
+                    "reference": "/api/auth/keys",
+                    "title": "Generate API Key",
+                    "type": "openapi"
+                  },
+                  {
+                    "method": "POST",
+                    "page": "/v1.0.0/api_reference/authentication/validate_token.mdx",
+                    "reference": "/api/auth/validate",
+                    "title": "Validate Token",
+                    "type": "openapi"
+                  }
+                ],
+                "title": "Authentication",
+                "type": "group"
+              },
+              {
+                "children": [
+                  {
+                    "method": "GET",
+                    "page": "/v1.0.0/api_reference/system/get_all_logs.mdx",
+                    "reference": "/management/logs",
+                    "title": "Get All Logs",
+                    "type": "openapi"
+                  },
+                  {
+                    "method": "PUT",
+                    "page": "/v1.0.0/api_reference/system/change_log_level.mdx",
+                    "reference": "/management/logs",
+                    "title": "Change Log Level",
+                    "type": "openapi"
+                  }
+                ],
+                "title": "System",
+                "type": "group"
+              }
+            ],
+            "tab": "API Reference"
+          },
+          {
+            "items": [],
+            "tab": "Mi new tab"
+          }
+        ],
+        "version": "v1.0.1"
+      }
+    ]
+  },
+  "theme": "crystal"
+}

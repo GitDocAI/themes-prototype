@@ -1,0 +1,59 @@
+{
+  "title": "Delete Application",
+  "method": "DELETE",
+  "path": "/api/applications/{id}",
+  "summary": "Delete an application and all its resources",
+  "description": "Delete an application and all its resources",
+  "operationId": "deleteApplication",
+  "tags": ["Applications"],
+  "deprecated": false,
+  "parameters": [
+    {
+      "name": "id",
+      "in": "path",
+      "description": "Application ID",
+      "required": true,
+      "schema": {
+        "type": "string",
+        "format": "uuid",
+        "example": "550e8400-e29b-41d4-a716-446655440000"
+      }
+    }
+  ],
+  "responses": {
+    "204": {
+      "description": "Application deleted successfully"
+    },
+    "401": {
+      "description": "Unauthorized - Authentication required"
+    },
+    "404": {
+      "description": "Not found - Application does not exist"
+    },
+    "500": {
+      "description": "Internal server error"
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    },
+    {
+      "ApiKeyAuth": []
+    }
+  ],
+  "securitySchemas": {
+    "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer",
+      "bearerFormat": "JWT",
+      "description": "JWT Bearer token authentication"
+    },
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "X-API-Key",
+      "description": "API key for authentication"
+    }
+  }
+}
