@@ -2,8 +2,8 @@ import { NodeViewWrapper, NodeViewContent } from '@tiptap/react'
 import type { NodeViewProps } from '@tiptap/react'
 import { useState, useEffect, useTransition, useRef } from 'react'
 
-export const TabsNodeView = ({ node, updateAttributes, editor, getPos }: NodeViewProps) => {
-  const [isPending, startTransition] = useTransition()
+export const TabsNodeView = ({ node, editor, getPos }: NodeViewProps) => {
+  const [_isPending, _startTransition] = useTransition()
   const [theme, setTheme] = useState<'light' | 'dark'>('dark')
   const [maxHeight, setMaxHeight] = useState<number>(0)
   const contentRefs = useRef<Map<number, HTMLDivElement>>(new Map())
@@ -120,7 +120,7 @@ export const TabsNodeView = ({ node, updateAttributes, editor, getPos }: NodeVie
     editor.commands.command(({ tr }) => {
       let currentPos = pos + 1
 
-      node.content.forEach((child, offset, idx) => {
+      node.content.forEach((child, _offset, idx) => {
         const childPos = currentPos
         const isCurrentTab = idx === index
 

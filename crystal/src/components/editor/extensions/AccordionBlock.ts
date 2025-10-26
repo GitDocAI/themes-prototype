@@ -80,7 +80,7 @@ export const AccordionBlock = Node.create({
     return {
       setAccordionBlock:
         (attributes: any) =>
-        ({ commands, editor }: any) => {
+        ({ commands }: any) => {
           return commands.insertContent({
             type: this.name,
             attrs: {

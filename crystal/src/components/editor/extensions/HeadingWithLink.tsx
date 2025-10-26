@@ -10,18 +10,6 @@ const HeadingComponent = ({ node, editor }: NodeViewProps) => {
   const level = node.attrs.level
   const isEditable = editor.isEditable
 
-  // Only show link icon for H1 in editable mode
-  if (level !== 1 || !isEditable) {
-    const Tag = `h${level}` as keyof React.JSX.IntrinsicElements
-    return (
-      <NodeViewWrapper>
-        <Tag>
-          <NodeViewContent />
-        </Tag>
-      </NodeViewWrapper>
-    )
-  }
-
   // Get the text content of the heading
   const getHeadingText = () => {
     return node.textContent
@@ -31,8 +19,21 @@ const HeadingComponent = ({ node, editor }: NodeViewProps) => {
   const generateId = (text: string) => {
     return text
       .toLowerCase()
+      .trim()
+      .replace(/[^\w\s-]/g, '')
       .replace(/\s+/g, '-')
-      .replace(/[^a-z0-9-]/g, '')
+  }
+
+  // Only show link icon for H1 in editable mode
+  if (level !== 1 || !isEditable) {
+    const Tag = `h${level}` as keyof React.JSX.IntrinsicElements
+    return (
+      <NodeViewWrapper>
+        <Tag id={generateId(getHeadingText())}>
+          <NodeViewContent />
+        </Tag>
+      </NodeViewWrapper>
+    )
   }
 
   // Copy link to clipboard

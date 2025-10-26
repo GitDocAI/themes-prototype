@@ -9,6 +9,7 @@ import { PageViewer } from './components/PageViewer'
 import { TOC } from './components/TOC'
 import { RightPanel } from './components/RightPanel'
 import { PrevNextNavigation } from './components/PrevNextNavigation'
+import { SearchModal } from './components/SearchModal'
 import { configLoader } from './services/configLoader'
 import { navigationService } from './services/navigationService'
 import type { Tab } from './services/configLoader'
@@ -35,6 +36,7 @@ function App() {
   const [primaryColor, setPrimaryColor] = useState<string>('#3b82f6')
   const [sidebarItems, setSidebarItems] = useState<NavigationItem[]>([])
   const [currentPath, setCurrentPath] = useState<string>('')
+  const [showSearchModal, setShowSearchModal] = useState<boolean>(false)
 
   // Use custom hook to detect RightPanel content
   const rightPanelContent = useRightPanelContent(currentPath)
@@ -42,6 +44,19 @@ function App() {
   // Debug log
   useEffect(() => {
   }, [rightPanelContent])
+
+  // Keyboard shortcut for search (Cmd+K or Ctrl+K)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault()
+        setShowSearchModal(true)
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [])
 
   // Initialize navigation from URL, localStorage, or defaults
   useEffect(() => {
@@ -210,10 +225,29 @@ function App() {
 
   }
 
-  const handleNavigate = (path: string) => {
+  const handleNavigate = (path: string, headingId?: string) => {
     // Use navigation service to navigate
     navigationService.navigateTo(path, currentVersion, currentTab)
     setCurrentPath(path)
+
+    // If headingId is provided, scroll to it after a short delay
+    if (headingId) {
+      setTimeout(() => {
+        const element = document.getElementById(headingId)
+        if (element) {
+          // Scroll to element with smooth behavior
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+
+          // Add highlight effect
+          element.style.transition = 'background-color 0.3s ease'
+          element.style.backgroundColor = 'rgba(59, 130, 246, 0.1)'
+
+          setTimeout(() => {
+            element.style.backgroundColor = ''
+          }, 2000)
+        }
+      }, 300)
+    }
   }
 
   const toggleDevMode = () => {
@@ -240,6 +274,7 @@ function App() {
           onVersionChange={handleVersionChange}
           currentVersion={currentVersion}
           isDevMode={isProductionMode ? false : isDevMode}
+          onSearchClick={() => setShowSearchModal(true)}
         />
         {tabs.length > 0 && (
           <TabBar
@@ -290,7 +325,7 @@ function App() {
         }}>
           {/* Page Viewer */}
           <div style={{ flex: '1 0 auto' }}>
-            <PageViewer pagePath={currentPath} theme={theme} isDevMode={isProductionMode ? false : isDevMode} />
+            <PageViewer key={currentPath} pagePath={currentPath} theme={theme} isDevMode={isProductionMode ? false : isDevMode} />
           </div>
 
           {/* Prev/Next Navigation */}
@@ -346,6 +381,14 @@ function App() {
           onToggle={toggleSettingsSidebar}
         />
       )}
+
+      {/* Search Modal */}
+      <SearchModal
+        visible={showSearchModal}
+        onHide={() => setShowSearchModal(false)}
+        onNavigate={handleNavigate}
+        theme={theme}
+      />
     </>
   )
 }

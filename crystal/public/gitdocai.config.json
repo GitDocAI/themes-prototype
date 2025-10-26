@@ -1,4 +1,17 @@
 {
+  "name": "Crystal Documentation",
+  "description": "Modern, elegant documentation with crystal-clear design and seamless user experience.",
+  "theme": "crystal",
+  "colors": {
+    "dark": "#8b5cf6",
+    "light": "#3b82f6"
+  },
+  "defaultThemeMode": "dark",
+  "logo": {
+    "light": "/assets/light.svg",
+    "dark": "/assets/dark.svg"
+  },
+  "favicon": "/assets/favicon.svg",
   "background": {
     "colors": {
       "dark": "#0a0f1c",
@@ -6,82 +19,81 @@
     }
   },
   "banner": {
+    "message": "✨ Welcome to Crystal Documentation - Modern, Elegant, Fast",
     "colors": {
-      "dark": "#8b5cf6",
-      "light": "#3b82f6"
-    },
-    "message": "✨ Welcome to Crystal Documentation - Modern, Elegant, Fast"
-  },
-  "colors": {
-    "dark": "#8b5cf6",
-    "light": "#3b82f6"
-  },
-  "defaultThemeMode": "light",
-  "description": "Modern, elegant documentation with crystal-clear design and seamless user experience.",
-  "favicon": "/assets/favicon.svg",
-  "footer": [
-    {
-      "reference": "https://github.com/crystal-docs",
-      "type": "github"
+      "light": "#3b82f6",
+      "dark": "#8b5cf6"
     }
-  ],
-  "logo": {
-    "dark": "/assets/1761495809114-dark.svg",
-    "light": "/assets/1761495800264-light.svg"
   },
-  "name": "Crystal",
   "navbar": [
     {
-      "label": "utmstack",
-      "reference": "asdasda",
-      "type": "link"
+      "type": "link",
+      "label": "Support",
+      "reference": "https://crystal-docs.com/support"
     },
     {
-      "label": "GitDocAI",
-      "reference": "https://gitdoc.ai",
-      "type": "link"
+      "type": "button",
+      "label": "Try Crystal",
+      "reference": "https://demo.crystal-docs.com"
+    }
+  ],
+  "footer": [
+    {
+      "type": "github",
+      "reference": "https://github.com/crystal-docs"
     }
   ],
   "navigation": {
     "versions": [
       {
+        "version": "v1.0.0",
         "tabs": [
           {
+            "tab": "Documentation",
             "items": [
               {
+                "title": "Getting Started",
+                "type": "group",
                 "children": [
                   {
-                    "page": "/v1.0.1/documentation/core_features/security.mdx",
-                    "title": "Security",
-                    "type": "page"
+                    "type": "page",
+                    "title": "Platform Overview",
+                    "page": "/v1.0.0/documentation/getting_started/introduction.mdx"
                   },
                   {
-                    "page": "/v1.0.1/documentation/core_features/integrations.mdx",
-                    "title": "Integrations",
-                    "type": "page"
+                    "type": "page",
+                    "title": "Installation Guide",
+                    "page": "/v1.0.0/documentation/getting_started/installation.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Quick Start",
+                    "page": "/v1.0.0/documentation/getting_started/quick_start.mdx"
                   }
-                ],
-                "title": "Core Features",
-                "type": "group"
+                ]
               },
               {
+                "type": "group",
+                "title": "Core Features",
                 "children": [
                   {
-                    "page": "/v1.0.0/documentation/getting_started/introduction.mdx",
-                    "title": "Platform",
-                    "type": "page"
+                    "type": "page",
+                    "title": "Cloud Services",
+                    "page": "/v1.0.0/documentation/core_features/cloud_services.mdx"
                   },
                   {
-                    "page": "/v1.0.0/documentation/getting_started/installation.mdx",
-                    "title": "Installation",
-                    "type": "page"
+                    "type": "page",
+                    "title": "Security Configuration",
+                    "page": "/v1.0.0/documentation/core_features/security_configuration.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Monitoring & Analytics",
+                    "page": "/v1.0.0/documentation/core_features/monitoring_analytics.mdx"
                   }
-                ],
-                "title": "Getting Started",
-                "type": "group"
+                ]
               }
-            ],
-            "tab": "Documentation"
+            ]
           },
           {
             "items": [
@@ -161,15 +173,9 @@
               }
             ],
             "tab": "API Reference"
-          },
-          {
-            "items": [],
-            "tab": "Mi new tab"
           }
-        ],
-        "version": "v1.0.1"
+        ]
       }
     ]
-  },
-  "theme": "crystal"
+  }
 }

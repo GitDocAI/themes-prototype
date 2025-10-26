@@ -1,815 +1,435 @@
 {
-  "content": {
-    "content": [
-      {
-        "attrs": {
-          "level": 1
-        },
-        "content": [
-          {
-            "text": "dsadsdy",
-            "type": "text"
-          }
-        ],
-        "type": "heading"
+  "type": "doc",
+  "content": [
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 1
       },
-      {
-        "attrs": {
-          "language": "python"
-        },
-        "content": [
-          {
-            "text": "\"yaml\": \"asdasdasd\"",
-            "type": "text"
-          }
-        ],
-        "type": "codeBlock"
+      "content": [
+        {
+          "type": "text",
+          "text": "Introduction to Acme Platform"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Welcome to Acme Platform, the comprehensive solution that empowers modern teams to build, deploy, and scale applications with ease."
+        }
+      ]
+    },
+    {
+      "type": "tipBlock",
+      "attrs": {
+        "type": "tip"
       },
-      {
-        "content": [
-          {
-            "text": "asdsdasdasdcx",
-            "type": "text"
-          }
-        ],
-        "type": "paragraph"
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Acme Platform provides everything you need to go from idea to production in minutes, not days."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
       },
-      {
-        "content": [
-          {
-            "marks": [
-              {
-                "type": "bold"
-              }
-            ],
-            "text": "Ahora comenzaremos a escribir",
-            "type": "text"
-          }
-        ],
-        "type": "paragraph"
-      },
-      {
-        "content": [
-          {
-            "marks": [
-              {
-                "type": "italic"
-              }
-            ],
-            "text": "Y esto es cursiva",
-            "type": "text"
-          }
-        ],
-        "type": "paragraph"
-      },
-      {
-        "content": [
-          {
-            "marks": [
-              {
-                "type": "strike"
-              }
-            ],
-            "text": "Subrayada",
-            "type": "text"
-          }
-        ],
-        "type": "paragraph"
-      },
-      {
-        "content": [
-          {
-            "marks": [
-              {
-                "type": "underline"
-              }
-            ],
-            "text": "Subrayaya",
-            "type": "text"
-          }
-        ],
-        "type": "paragraph"
-      },
-      {
-        "content": [
-          {
-            "marks": [
-              {
-                "type": "code"
-              }
-            ],
-            "text": "In line codec",
-            "type": "text"
-          },
-          {
-            "text": " asdasdasdasdasdasda",
-            "type": "text"
-          }
-        ],
-        "type": "paragraph"
-      },
-      {
-        "content": [
-          {
-            "content": [
-              {
-                "content": [
-                  {
-                    "text": "Hola que tak",
-                    "type": "text"
-                  }
-                ],
-                "type": "paragraph"
-              }
-            ],
-            "type": "listItem"
-          },
-          {
-            "content": [
-              {
-                "content": [
-                  {
-                    "text": "me llamo paco",
-                    "type": "text"
-                  }
-                ],
-                "type": "paragraph"
-              }
-            ],
-            "type": "listItem"
-          }
-        ],
-        "type": "bulletList"
-      },
-      {
-        "attrs": {
-          "start": 1,
-          "type": null
-        },
-        "content": [
-          {
-            "content": [
-              {
-                "content": [
-                  {
-                    "text": "asdasd",
-                    "type": "text"
-                  }
-                ],
-                "type": "paragraph"
-              }
-            ],
-            "type": "listItem"
-          },
-          {
-            "content": [
-              {
-                "content": [
-                  {
-                    "text": "asdasd",
-                    "type": "text"
-                  }
-                ],
-                "type": "paragraph"
-              }
-            ],
-            "type": "listItem"
-          }
-        ],
-        "type": "orderedList"
-      },
-      {
-        "content": [
-          {
-            "attrs": {
-              "checked": true
-            },
-            "content": [
-              {
-                "content": [
-                  {
-                    "text": "asdasd",
-                    "type": "text"
-                  }
-                ],
-                "type": "paragraph"
-              }
-            ],
-            "type": "taskItem"
-          },
-          {
-            "attrs": {
-              "checked": true
-            },
-            "content": [
-              {
-                "content": [
-                  {
-                    "text": "hola como esats",
-                    "type": "text"
-                  }
-                ],
-                "type": "paragraph"
-              }
-            ],
-            "type": "taskItem"
-          }
-        ],
-        "type": "taskList"
-      },
-      {
-        "type": "horizontalRule"
-      },
-      {
-        "content": [
-          {
-            "marks": [
-              {
-                "attrs": {
-                  "class": "custom-link",
-                  "href": "/v1.0.0/documentation/getting_started/introduction#dsadsdy",
-                  "rel": "noopener noreferrer nofollow",
-                  "target": "_blank"
+      "content": [
+        {
+          "type": "text",
+          "text": "What is Acme Platform?"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Acme Platform is an innovative cloud-native platform that combines the power of modern infrastructure with developer-friendly tools. It helps teams:"
+        }
+      ]
+    },
+    {
+      "type": "bulletList",
+      "content": [
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ],
+                  "text": "Rapidly deploy"
                 },
-                "type": "link"
-              }
-            ],
-            "text": "Mi link",
-            "type": "text"
-          }
-        ],
-        "type": "paragraph"
-      },
-      {
-        "attrs": {
-          "id": null,
-          "type": "note"
-        },
-        "content": [
-          {
-            "content": [
-              {
-                "text": "Note content",
-                "type": "text"
-              }
-            ],
-            "type": "paragraph"
-          }
-        ],
-        "type": "noteBlock"
-      },
-      {
-        "attrs": {
-          "id": null,
-          "type": "warning"
-        },
-        "content": [
-          {
-            "content": [
-              {
-                "text": "Warning content",
-                "type": "text"
-              }
-            ],
-            "type": "paragraph"
-          }
-        ],
-        "type": "warningBlock"
-      },
-      {
-        "attrs": {
-          "id": null,
-          "type": "danger"
-        },
-        "content": [
-          {
-            "content": [
-              {
-                "text": "Danger content",
-                "type": "text"
-              }
-            ],
-            "type": "paragraph"
-          }
-        ],
-        "type": "dangerBlock"
-      },
-      {
-        "attrs": {
-          "id": null,
-          "type": "info"
-        },
-        "content": [
-          {
-            "content": [
-              {
-                "text": "Info content",
-                "type": "text"
-              }
-            ],
-            "type": "paragraph"
-          }
-        ],
-        "type": "infoBlock"
-      },
-      {
-        "attrs": {
-          "files": [
-            {
-              "code": "def calculate():\n  pritf(\"hello\")",
-              "filename": "example.py",
-              "language": "python"
-            },
-            {
-              "code": "si si este soy yo",
-              "filename": "newfile.js",
-              "language": "yaml"
+                {
+                  "type": "text",
+                  "text": " applications to the cloud"
+                }
+              ]
             }
           ]
         },
-        "type": "codeGroup"
-      },
-      {
-        "attrs": {
-          "columnCount": 2
-        },
-        "content": [
-          {
-            "attrs": {
-              "width": "auto"
-            },
-            "content": [
-              {
-                "attrs": {
-                  "content": "Here you will generate code",
-                  "href": "https://gitdoc.ai",
-                  "icon": "pi pi-star",
-                  "iconAlign": "left",
-                  "id": "card-1761435969956",
-                  "title": "AI Generation"
-                },
-                "type": "cardBlock"
-              }
-            ],
-            "type": "column"
-          },
-          {
-            "attrs": {
-              "width": "auto"
-            },
-            "content": [
-              {
-                "attrs": {
-                  "content": "Cybersecurity",
-                  "href": "https://utmstack.com",
-                  "icon": "pi pi-cloud",
-                  "iconAlign": "right",
-                  "id": "card-1761436044740",
-                  "title": "Siem Solution"
-                },
-                "type": "cardBlock"
-              }
-            ],
-            "type": "column"
-          }
-        ],
-        "type": "columnGroup"
-      },
-      {
-        "attrs": {
-          "id": "accordion-1761484615279",
-          "multiple": true
-        },
-        "content": [
-          {
-            "attrs": {
-              "disabled": false,
-              "header": "Esto es un tab 1",
-              "isActive": false
-            },
-            "content": [
-              {
-                "attrs": {
-                  "id": null,
-                  "type": "tip"
-                },
-                "content": [
-                  {
-                    "content": [
-                      {
-                        "text": "Tip content",
-                        "type": "text"
-                      }
-                    ],
-                    "type": "paragraph"
-                  }
-                ],
-                "type": "tipBlock"
-              },
-              {
-                "attrs": {
-                  "files": [
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "marks": [
                     {
-                      "code": "asdasdasd",
-                      "filename": "example.js",
-                      "language": "javascript"
+                      "type": "bold"
                     }
-                  ]
+                  ],
+                  "text": "Scale automatically"
                 },
-                "type": "codeGroup"
-              },
-              {
-                "type": "paragraph"
-              }
-            ],
-            "type": "accordionTab"
-          },
-          {
-            "attrs": {
-              "disabled": false,
-              "header": "Esto es el tab 2",
-              "isActive": false
-            },
-            "content": [
-              {
-                "attrs": {
-                  "level": 1
-                },
-                "content": [
-                  {
-                    "text": "Content 2",
-                    "type": "text"
-                  }
-                ],
-                "type": "heading"
-              },
-              {
-                "content": [
-                  {
-                    "attrs": {
-                      "checked": false
-                    },
-                    "content": [
-                      {
-                        "content": [
-                          {
-                            "text": "uno",
-                            "type": "text"
-                          }
-                        ],
-                        "type": "paragraph"
-                      }
-                    ],
-                    "type": "taskItem"
-                  },
-                  {
-                    "attrs": {
-                      "checked": true
-                    },
-                    "content": [
-                      {
-                        "content": [
-                          {
-                            "text": "dos",
-                            "type": "text"
-                          }
-                        ],
-                        "type": "paragraph"
-                      }
-                    ],
-                    "type": "taskItem"
-                  },
-                  {
-                    "attrs": {
-                      "checked": false
-                    },
-                    "content": [
-                      {
-                        "content": [
-                          {
-                            "text": "tres",
-                            "type": "text"
-                          }
-                        ],
-                        "type": "paragraph"
-                      }
-                    ],
-                    "type": "taskItem"
-                  }
-                ],
-                "type": "taskList"
-              },
-              {
-                "type": "paragraph"
-              }
-            ],
-            "type": "accordionTab"
-          }
-        ],
-        "type": "accordionBlock"
-      },
-      {
-        "attrs": {
-          "id": "endpoint-1761486060283",
-          "method": "GET",
-          "path": "/api/endpoint"
+                {
+                  "type": "text",
+                  "text": " based on demand"
+                }
+              ]
+            }
+          ]
         },
-        "type": "endpointBlock"
-      },
-      {
-        "attrs": {
-          "alignment": "center",
-          "id": "tabs-1761487707941"
-        },
-        "content": [
-          {
-            "attrs": {
-              "icon": "pi-star",
-              "isActive": false,
-              "label": "Este es mi tab"
-            },
-            "content": [
-              {
-                "content": [
-                  {
-                    "text": "aqui escribo normal",
-                    "type": "text"
-                  }
-                ],
-                "type": "paragraph"
-              },
-              {
-                "content": [
-                  {
-                    "attrs": {
-                      "checked": false
-                    },
-                    "content": [
-                      {
-                        "content": [
-                          {
-                            "text": "item 1",
-                            "type": "text"
-                          }
-                        ],
-                        "type": "paragraph"
-                      }
-                    ],
-                    "type": "taskItem"
-                  },
-                  {
-                    "attrs": {
-                      "checked": false
-                    },
-                    "content": [
-                      {
-                        "content": [
-                          {
-                            "text": "item 2",
-                            "type": "text"
-                          }
-                        ],
-                        "type": "paragraph"
-                      }
-                    ],
-                    "type": "taskItem"
-                  },
-                  {
-                    "attrs": {
-                      "checked": true
-                    },
-                    "content": [
-                      {
-                        "content": [
-                          {
-                            "text": "item 3",
-                            "type": "text"
-                          }
-                        ],
-                        "type": "paragraph"
-                      }
-                    ],
-                    "type": "taskItem"
-                  },
-                  {
-                    "attrs": {
-                      "checked": true
-                    },
-                    "content": [
-                      {
-                        "content": [
-                          {
-                            "text": "item 4",
-                            "type": "text"
-                          }
-                        ],
-                        "type": "paragraph"
-                      }
-                    ],
-                    "type": "taskItem"
-                  },
-                  {
-                    "attrs": {
-                      "checked": true
-                    },
-                    "content": [
-                      {
-                        "content": [
-                          {
-                            "text": "item 5",
-                            "type": "text"
-                          }
-                        ],
-                        "type": "paragraph"
-                      }
-                    ],
-                    "type": "taskItem"
-                  },
-                  {
-                    "attrs": {
-                      "checked": true
-                    },
-                    "content": [
-                      {
-                        "content": [
-                          {
-                            "text": "item 6",
-                            "type": "text"
-                          }
-                        ],
-                        "type": "paragraph"
-                      }
-                    ],
-                    "type": "taskItem"
-                  }
-                ],
-                "type": "taskList"
-              },
-              {
-                "attrs": {
-                  "content": "asidaisdasdasdasdasd",
-                  "href": "",
-                  "icon": "pi pi-star",
-                  "iconAlign": "left",
-                  "id": "card-1761489136368",
-                  "title": "New Card"
-                },
-                "type": "cardBlock"
-              },
-              {
-                "type": "paragraph"
-              }
-            ],
-            "type": "tabBlock"
-          },
-          {
-            "attrs": {
-              "icon": "pi-heart",
-              "isActive": true,
-              "label": "Este es mi tab 2"
-            },
-            "content": [
-              {
-                "attrs": {
-                  "level": 1
-                },
-                "content": [
-                  {
-                    "text": "Hola que tal",
-                    "type": "text"
-                  }
-                ],
-                "type": "heading"
-              },
-              {
-                "attrs": {
-                  "id": null,
-                  "type": "tip"
-                },
-                "content": [
-                  {
-                    "content": [
-                      {
-                        "text": "Tip content",
-                        "type": "text"
-                      }
-                    ],
-                    "type": "paragraph"
-                  }
-                ],
-                "type": "tipBlock"
-              },
-              {
-                "attrs": {
-                  "files": [
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "marks": [
                     {
-                      "code": "asdasdasdasd",
-                      "filename": "example.js",
-                      "language": "javascript"
+                      "type": "bold"
                     }
-                  ]
+                  ],
+                  "text": "Monitor performance"
                 },
-                "type": "codeGroup"
-              },
-              {
-                "type": "paragraph"
-              }
-            ],
-            "type": "tabBlock"
-          }
-        ],
-        "type": "tabsBlock"
+                {
+                  "type": "text",
+                  "text": " in real-time"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ],
+                  "text": "Collaborate effectively"
+                },
+                {
+                  "type": "text",
+                  "text": " across teams"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
       },
-      {
-        "attrs": {
-          "columns": [
+      "content": [
+        {
+          "type": "text",
+          "text": "Key Benefits"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "✅ Reduces deployment time by 90% with automated CI/CD"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "✅ Scales automatically to handle traffic spikes"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "✅ Provides comprehensive monitoring and analytics"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "✅ Supports all major programming languages and frameworks"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "How It Works"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Acme Platform follows a simple three-step process:"
+        }
+      ]
+    },
+    {
+      "type": "orderedList",
+      "content": [
+        {
+          "type": "listItem",
+          "content": [
             {
-              "filterable": false,
-              "id": "col1",
-              "label": "Column 1",
-              "sortable": false
-            },
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ],
+                  "text": "Connect Your Code"
+                },
+                {
+                  "type": "text",
+                  "text": " - Link your Git repository to Acme Platform"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
             {
-              "filterable": false,
-              "id": "col2",
-              "label": "Column 2",
-              "sortable": false
-            },
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ],
+                  "text": "Automated Build"
+                },
+                {
+                  "type": "text",
+                  "text": " - Our system automatically builds and tests your application"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
             {
-              "filterable": true,
-              "id": "col3",
-              "label": "Column 3",
-              "sortable": false
-            },
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ],
+                  "text": "Deploy & Scale"
+                },
+                {
+                  "type": "text",
+                  "text": " - Your app is deployed with automatic scaling and monitoring"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "infoBlock",
+      "attrs": {
+        "type": "info"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
             {
-              "filterable": true,
-              "id": "col1761491860228",
-              "label": "Mi nueva",
-              "sortable": true
+              "type": "text",
+              "text": "Acme Platform supports all major programming languages and frameworks, including JavaScript, Python, Java, Go, and more."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Getting Started"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Ready to transform your development workflow? Here's what you need to get started:"
+        }
+      ]
+    },
+    {
+      "type": "bulletList",
+      "content": [
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "A Git repository (GitHub, GitLab, or Bitbucket)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "A cloud account (AWS, Azure, or GCP)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "5 minutes of your time"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Let's move on to the "
+        },
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "link",
+              "attrs": {
+                "href": "/v1.0.0/documentation/getting_started/installation",
+                "target": "_self"
+              }
             }
           ],
-          "pagination": true,
-          "rows": [
+          "text": "Installation Guide"
+        },
+        {
+          "type": "text",
+          "text": " to set up your first Acme Platform project."
+        }
+      ]
+    },
+    {
+      "type": "horizontalRule"
+    },
+    {
+      "type": "noteBlock",
+      "attrs": {
+        "type": "note"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
             {
-              "col1": "Data 1-1",
-              "col1761491860228": "Hola hoasdasd",
-              "col2": "Data 1-2",
-              "col3": "Data 1-3",
-              "id": "row1"
-            },
-            {
-              "col1": "Data 2-1",
-              "col1761491860228": "Como estas",
-              "col2": "Data 2-2",
-              "col3": "Data 2-3",
-              "id": "row2"
-            },
-            {
-              "col1": "Data 3-1",
-              "col1761491860228": "Mi nombre",
-              "col2": "Data 3-2",
-              "col3": "Data 3-3",
-              "id": "row3"
-            },
-            {
-              "col1": "Uno",
-              "col1761491860228": "cuadtro",
-              "col2": "Dos",
-              "col3": "ter",
-              "id": "row1761491889364"
-            },
-            {
-              "col1": "Aqui",
-              "col1761491860228": "asdasda",
-              "col2": "asdasd",
-              "col3": "asdasda",
-              "id": "row1761491908124"
+              "type": "text",
+              "text": "Acme Platform is designed to work with teams of all sizes, from solo developers to enterprise organizations."
             }
-          ],
-          "rowsPerPage": 5,
-          "rowsPerPageOptions": [
-            1,
-            2,
-            5
-          ],
-          "scrollHeight": 500,
-          "scrollable": true
-        },
-        "type": "tableBlock"
-      },
-      {
-        "attrs": {
-          "alt": "Image",
-          "caption": "",
-          "src": "/assets/1761493998652-WhatsApp_Image_2025-08-24_at_10.26.21_AM.jpeg",
-          "type": "local"
-        },
-        "type": "imageBlock"
-      },
-      {
-        "type": "paragraph"
-      }
-    ],
-    "type": "doc"
-  }
+          ]
+        }
+      ]
+    }
+  ]
 }

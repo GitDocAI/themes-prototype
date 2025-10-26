@@ -44,7 +44,7 @@ export const ImageBlock = Node.create({
   addCommands() {
     return {
       setImageBlock:
-        (attrs) =>
+        (attrs: any) =>
         ({ commands }: any) => {
           return commands.insertContent({
             type: this.name,

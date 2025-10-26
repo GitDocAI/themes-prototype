@@ -8,7 +8,7 @@ export const TrailingParagraph = Extension.create({
     return [
       new Plugin({
         key: new PluginKey('trailingParagraph'),
-        appendTransaction: (transactions, oldState, newState) => {
+        appendTransaction: (_transactions, _oldState, newState) => {
           const { doc, tr } = newState
           let modified = false
 

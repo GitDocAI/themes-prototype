@@ -63,7 +63,7 @@ export const PageRenderer: React.FC<PageRendererProps> = ({ pageData, theme, onS
     contentRef.current = newContent
     setHasChanges(false)
     hasChangesRef.current = false
-  }, [pageData.id])
+  }, [pageData.id, pageData.content, pageData.blocks])
 
   const handleTiptapUpdate = (updatedContent: any) => {
     setContent(updatedContent)

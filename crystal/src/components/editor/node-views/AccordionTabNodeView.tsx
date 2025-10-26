@@ -3,7 +3,7 @@ import type { NodeViewProps } from '@tiptap/react'
 import { useState, useEffect, useTransition } from 'react'
 
 export const AccordionTabNodeView = ({ node, updateAttributes, editor, getPos }: NodeViewProps) => {
-  const [isPending, startTransition] = useTransition()
+  const [_isPending, startTransition] = useTransition()
   const [isActive, setIsActive] = useState(node.attrs.isActive || false)
   const [editingHeader, setEditingHeader] = useState(false)
   const [headerValue, setHeaderValue] = useState(node.attrs.header || 'Tab')
@@ -61,7 +61,7 @@ export const AccordionTabNodeView = ({ node, updateAttributes, editor, getPos }:
               const tabPos = tr.doc.resolve(accordionPos + 1)
               let currentPos = tabPos.pos
 
-              accordionNode.content.forEach((child, offset, index) => {
+              accordionNode.content.forEach((child, _offset, _index) => {
                 const childPos = currentPos
                 const isCurrentTab = childPos === pos
 

@@ -1,7 +1,6 @@
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Placeholder from '@tiptap/extension-placeholder'
-import Underline from '@tiptap/extension-underline'
 import TaskList from '@tiptap/extension-task-list'
 import TaskItem from '@tiptap/extension-task-item'
 import Link from '@tiptap/extension-link'
@@ -67,7 +66,6 @@ export const TiptapEditor: React.FC<TiptapEditorProps> = ({ content, theme, onUp
       Placeholder.configure({
         placeholder: 'Type / for commands...',
       }),
-      Underline,
       TaskList,
       TaskItem.configure({
         nested: true,
@@ -134,7 +132,10 @@ export const TiptapEditor: React.FC<TiptapEditorProps> = ({ content, theme, onUp
       const newContent = JSON.stringify(content)
 
       if (currentContent !== newContent) {
-        editor.commands.setContent(content)
+        // Update immediately and don't emit update event to prevent cascading renders
+        if (!editor.isDestroyed) {
+          editor.commands.setContent(content, { emitUpdate: false })
+        }
       }
     }
   }, [content, editor])

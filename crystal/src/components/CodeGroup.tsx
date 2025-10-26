@@ -38,15 +38,11 @@ export const CodeGroup: React.FC<CodeGroupProps> = ({
   children,
   dropdown = false,
   theme: propTheme,
-  title: propTitle,
 }) => {
 
   const [files, setFiles] = useState<CodeFile[]>([])
   const [activeIndex, setActiveIndex] = useState(0)
   const [highlightedCode, setHighlightedCode] = useState<string[]>([])
-  const [copied, setCopied] = useState(false)
-  const [editingTitle, setEditingTitle] = useState(false)
-  const [localTitle, setLocalTitle] = useState(propTitle || '')
 
   // Auto-detect theme if not provided
   const [autoTheme, setAutoTheme] = useState<'light' | 'dark'>('light')
@@ -143,8 +139,6 @@ export const CodeGroup: React.FC<CodeGroupProps> = ({
   const handleCopy = async () => {
     if (files[activeIndex]) {
       await navigator.clipboard.writeText(files[activeIndex].code)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
     }
   }
 

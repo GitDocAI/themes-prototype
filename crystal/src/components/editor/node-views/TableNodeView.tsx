@@ -473,7 +473,7 @@ export const TableNodeView = ({ node, editor, getPos }: NodeViewProps) => {
           userSelect: isEditable ? 'none' : 'auto',
           WebkitUserSelect: isEditable ? 'none' : 'auto',
           MozUserSelect: isEditable ? 'none' : 'auto',
-          msUserSelect: isEditable ? 'none' : 'auto',
+          msUserSelect: (isEditable ? 'none' : 'auto') as any,
         }}
       >
         {/* Controls Bar - Only in edit mode */}
@@ -919,7 +919,7 @@ export const TableNodeView = ({ node, editor, getPos }: NodeViewProps) => {
                   cursor: 'pointer',
                 }}
               >
-                {rowsPerPageOptions.map((option) => (
+                {rowsPerPageOptions.map((option: number) => (
                   <option key={option} value={option}>
                     {option}
                   </option>

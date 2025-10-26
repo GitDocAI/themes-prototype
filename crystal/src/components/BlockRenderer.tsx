@@ -236,7 +236,7 @@ export const BlockRenderer: React.FC<BlockRendererProps> = ({ block, theme }) =>
       return (
         <div style={{ marginBottom: '16px' }}>
           {block.snippets?.map((snippet: any, idx: number) => (
-            <div key={idx} style={{ marginBottom: idx < block.snippets.length - 1 ? '8px' : '0' }}>
+            <div key={idx} style={{ marginBottom: idx < (block.snippets?.length ?? 0) - 1 ? '8px' : '0' }}>
               {snippet.label && (
                 <div
                   style={{

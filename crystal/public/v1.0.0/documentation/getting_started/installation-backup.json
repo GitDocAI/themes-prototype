@@ -7,19 +7,25 @@
         },
         "content": [
           {
-            "text": "Security",
+            "text": "Installation",
             "type": "text"
           }
         ],
         "type": "heading"
       },
       {
+        "attrs": {
+          "language": "python"
+        },
         "content": [
           {
-            "text": "This is a new page. Start editing to add your content.",
+            "text": "\"yaml\": \"asdasdasd\"",
             "type": "text"
           }
         ],
+        "type": "codeBlock"
+      },
+      {
         "type": "paragraph"
       }
     ],

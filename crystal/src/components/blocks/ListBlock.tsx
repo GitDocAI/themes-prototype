@@ -14,7 +14,6 @@ export const ListBlock: React.FC<ListBlockProps> = ({
   block,
   theme,
   isEditing,
-  onEdit,
   onCancel,
   onSave,
 }) => {

@@ -106,7 +106,7 @@ export const PageViewer: React.FC<PageViewerProps> = ({ pagePath, theme, isDevMo
         ...block,
         id: `block-${idx}`
       })) : undefined,
-      content: (pageData as any).content // Tiptap JSON format
+      content: (pageData as any) // Pass the entire JSON object (which should have {type: "doc", content: [...]})
     }
 
     return (
@@ -136,7 +136,7 @@ export const PageViewer: React.FC<PageViewerProps> = ({ pagePath, theme, isDevMo
     description: '',
     // Support both formats: legacy blocks array or new Tiptap content
     blocks: pageData.blocks,
-    content: (pageData as any).content // Tiptap JSON format
+    content: (pageData as any) // Pass the entire JSON object (which should have {type: "doc", content: [...]})
   }
 
   return (

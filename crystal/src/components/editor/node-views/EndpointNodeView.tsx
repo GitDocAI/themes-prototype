@@ -4,7 +4,7 @@ import { useState, useEffect, useTransition } from 'react'
 import { Endpoint } from '../../Endpoint'
 
 export const EndpointNodeView = ({ node, updateAttributes, editor, getPos }: NodeViewProps) => {
-  const [isPending, startTransition] = useTransition()
+  const [_isPending, startTransition] = useTransition()
   const [isEditing, setIsEditing] = useState(false)
   const [method, setMethod] = useState<'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'>(node.attrs.method || 'GET')
   const [path, setPath] = useState(node.attrs.path || '/api/endpoint')

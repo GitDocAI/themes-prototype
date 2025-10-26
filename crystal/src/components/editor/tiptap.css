@@ -676,3 +676,13 @@ body[style*="background-color: rgb(255, 255, 255)"] .hljs-builtin-name {
 body[style*="background-color: rgb(255, 255, 255)"] .hljs-meta {
   color: #005cc5;
 }
+
+/* Pulse animation for loading skeletons */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

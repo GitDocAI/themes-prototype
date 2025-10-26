@@ -39,7 +39,9 @@ export const Footer: React.FC<FooterProps> = ({ theme }) => {
       style={{
         borderTop: `0.5px solid ${colors.border}`,
         padding: '24px 32px',
-        marginTop: '60px'
+        marginTop: '60px',
+        minHeight: '120px', // Reserve space to prevent layout shift
+        contain: 'layout' // Prevent layout from affecting other elements
       }}
     >
       <div

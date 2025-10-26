@@ -75,7 +75,6 @@ export const InfoNodeView = ({ node, updateAttributes, editor, getPos }: NodeVie
   const isEditable = editor.isEditable
 
   if (isEditing) {
-    const typeConfig = getTypeConfig(type)
     return (
       <NodeViewWrapper className="info-node-view">
         <div

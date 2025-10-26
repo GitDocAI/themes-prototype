@@ -9,7 +9,7 @@ interface DragHandleMenuProps {
 export const DragHandleMenu: React.FC<DragHandleMenuProps> = ({ editor, theme }) => {
   const [position, setPosition] = useState<{ top: number; left: number } | null>(null)
   const [isDragging, setIsDragging] = useState(false)
-  const [draggedNode, setDraggedNode] = useState<{ pos: number; node: any } | null>(null)
+  const [, setDraggedNode] = useState<{ pos: number; node: any } | null>(null)
   const [isHoveringHandle, setIsHoveringHandle] = useState(false)
 
   useEffect(() => {

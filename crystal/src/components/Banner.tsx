@@ -6,22 +6,15 @@ interface BannerProps {
 }
 
 export const Banner: React.FC<BannerProps> = ({ theme }) => {
+  // Load banner config synchronously to prevent layout shift
+  const config = configLoader.getConfig()
+  const hasBanner = config?.banner?.message ? true : false
+  const message = hasBanner ? config.banner.message : ''
+  const bannerColor = hasBanner ? config.banner.colors[theme] : '#3b82f6'
+
   const [visible, setVisible] = useState(true)
-  const [message, setMessage] = useState('')
-  const [bannerColor, setBannerColor] = useState('')
-  const [hasBanner, setHasBanner] = useState(false)
 
-  useEffect(() => {
-    const config = configLoader.getConfig()
-    if (config?.banner?.message) {
-      setHasBanner(true)
-      setMessage(config.banner.message)
-      setBannerColor(config.banner.colors[theme])
-    } else {
-      setHasBanner(false)
-    }
-  }, [theme])
-
+  // Don't render at all if there's no banner configured
   if (!hasBanner || !visible || !message) return null
 
   // Convertir hex a rgba

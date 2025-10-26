@@ -3,7 +3,7 @@ import type { NodeViewProps } from '@tiptap/react'
 import { useState, useEffect, useTransition } from 'react'
 
 export const AccordionNodeView = ({ node, updateAttributes, editor, getPos }: NodeViewProps) => {
-  const [isPending, startTransition] = useTransition()
+  const [_isPending, startTransition] = useTransition()
   const [multiple, setMultiple] = useState<boolean>(node.attrs.multiple || false)
   const [theme, setTheme] = useState<'light' | 'dark'>('dark')
 
@@ -47,7 +47,7 @@ export const AccordionNodeView = ({ node, updateAttributes, editor, getPos }: No
       let activeCount = 0
       let firstActiveIndex = -1
 
-      node.content.forEach((child, offset, index) => {
+      node.content.forEach((child, _offset, index) => {
         if (child.attrs.isActive) {
           activeCount++
           if (firstActiveIndex === -1) {
@@ -62,7 +62,7 @@ export const AccordionNodeView = ({ node, updateAttributes, editor, getPos }: No
           const tabPos = tr.doc.resolve(pos + 1)
           let currentPos = tabPos.pos
 
-          node.content.forEach((child, offset, index) => {
+          node.content.forEach((child, _offset, index) => {
             if (child.attrs.isActive && index !== firstActiveIndex) {
               tr.setNodeMarkup(currentPos, undefined, {
                 ...child.attrs,

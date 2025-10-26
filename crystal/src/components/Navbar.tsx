@@ -10,9 +10,10 @@ interface NavbarProps {
   onVersionChange?: (version: string) => void
   currentVersion?: string
   isDevMode?: boolean
+  onSearchClick?: () => void
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ theme, onThemeChange, onVersionChange, currentVersion, isDevMode = false }) => {
+export const Navbar: React.FC<NavbarProps> = ({ theme, onThemeChange, onVersionChange, currentVersion, isDevMode = false, onSearchClick = () => {} }) => {
   const { updateTrigger } = useConfig()
   const [logo, setLogo] = useState('')
   const [siteName, setSiteName] = useState('')
@@ -202,7 +203,7 @@ export const Navbar: React.FC<NavbarProps> = ({ theme, onThemeChange, onVersionC
     }
   }
 
-  const handleDragOver = (e: React.DragEvent, index: number) => {
+  const handleDragOver = (e: React.DragEvent, _index: number) => {
     if (isDevMode) {
       e.preventDefault()
     }
@@ -369,6 +370,8 @@ export const Navbar: React.FC<NavbarProps> = ({ theme, onThemeChange, onVersionC
           placeholder="Search"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
+          onClick={() => onSearchClick && onSearchClick()}
+          readOnly
           style={{
             width: '100%',
             padding: '10px 80px 10px 40px',
