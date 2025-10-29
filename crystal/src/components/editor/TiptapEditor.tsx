@@ -142,13 +142,17 @@ export const TiptapEditor: React.FC<TiptapEditorProps> = ({ content, theme, onUp
 
   // Update editor class when theme changes
   useEffect(() => {
-    if (editor) {
-      const editorElement = editor.view.dom
-      if (theme === 'dark') {
-        editorElement.classList.add('dark-theme')
-      } else {
-        editorElement.classList.remove('dark-theme')
+    try{
+      if (editor) {
+        const editorElement = editor.view.dom
+        if (theme === 'dark') {
+          editorElement.classList.add('dark-theme')
+        } else {
+          editorElement.classList.remove('dark-theme')
+        }
       }
+    }catch(e){
+      console.error(e)
     }
   }, [theme, editor])
 
