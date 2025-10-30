@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import { fetchConfig } from '../utils/backendUtils'
 
 interface LogoEditorProps {
   theme: 'light' | 'dark'
@@ -23,8 +24,7 @@ export const LogoEditor: React.FC<LogoEditorProps> = ({ theme, onClose }) => {
   useEffect(() => {
     const loadLogos = async () => {
       try {
-        const response = await fetch('/gitdocai.config.json')
-        const data = await response.json()
+        const data = await fetchConfig()
 
         // Always set values, even if empty
         const lightLogo = data.logo?.light || ''
@@ -126,8 +126,7 @@ export const LogoEditor: React.FC<LogoEditorProps> = ({ theme, onClose }) => {
 
     try {
       // Read the current full config
-      const currentConfigResponse = await fetch('/gitdocai.config.json')
-      const currentFullConfig = await currentConfigResponse.json()
+      const currentFullConfig = await fetchConfig()
 
       // Update logo config
       const updatedConfig = {

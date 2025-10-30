@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom'
 import { configLoader } from '../services/configLoader'
 import type { Tab } from '../services/configLoader'
 import { DeleteConfirmModal } from './DeleteConfirmModal'
+import { fetchConfig } from '../utils/backendUtils'
 
 interface TabBarProps {
   tabs: Tab[]
@@ -75,8 +76,7 @@ export const TabBar: React.FC<TabBarProps> = ({
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080/api'
 
       // Fetch current config
-      const response = await fetch('/gitdocai.config.json')
-      const config = await response.json()
+      const config = await fetchConfig()
 
       // Find the version and update the tab name
       if (config.navigation?.versions) {
@@ -126,8 +126,7 @@ export const TabBar: React.FC<TabBarProps> = ({
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080/api'
 
       // Fetch current config
-      const response = await fetch('/gitdocai.config.json')
-      const config = await response.json()
+      const config = await fetchConfig()
 
       // Find the version and remove the tab
       if (config.navigation?.versions) {
@@ -165,8 +164,7 @@ export const TabBar: React.FC<TabBarProps> = ({
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080/api'
 
       // Fetch current config
-      const response = await fetch('/gitdocai.config.json')
-      const config = await response.json()
+      const config = await fetchConfig()
 
       // Find the version and add new tab
       if (config.navigation?.versions) {
@@ -222,8 +220,7 @@ export const TabBar: React.FC<TabBarProps> = ({
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080/api'
 
       // Fetch current config
-      const response = await fetch('/gitdocai.config.json')
-      const config = await response.json()
+      const config = await fetchConfig()
 
       // Reorder tabs
       if (config.navigation?.versions) {

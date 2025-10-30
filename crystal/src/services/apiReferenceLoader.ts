@@ -62,6 +62,22 @@ class ApiReferenceLoader {
   }
 
   /**
+   * Invalidate cache for a page after saving
+   * Clears both .json and .mdx versions
+   */
+  invalidateCache(pagePath: string): void {
+    // Clear both .json and .mdx versions
+    const jsonPath = pagePath.replace(/\.mdx$/, '.json')
+    const mdxPath = pagePath.replace(/\.json$/, '.mdx')
+
+    this.cache.delete(pagePath)
+    this.cache.delete(jsonPath)
+    this.cache.delete(mdxPath)
+
+    console.log(`[ApiReferenceLoader] Cache invalidated for: ${pagePath}`)
+  }
+
+  /**
    * Get cache size
    */
   getCacheSize(): number {

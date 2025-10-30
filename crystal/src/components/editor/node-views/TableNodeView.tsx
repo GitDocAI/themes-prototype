@@ -47,8 +47,31 @@ export const TableNodeView = ({ node, editor, getPos }: NodeViewProps) => {
   const pagination = node.attrs.pagination
   const rowsPerPage = node.attrs.rowsPerPage
   const rowsPerPageOptions = node.attrs.rowsPerPageOptions
-  const columns: Column[] = node.attrs.columns
-  const rows: Row[] = node.attrs.rows
+
+  // Normalize columns: add id, sortable, filterable if missing
+  const rawColumns = node.attrs.columns || []
+  const columns: Column[] = rawColumns.map((col: any, idx: number) => ({
+    id: col.id || col.label || `col${idx}`,
+    label: col.label || col.id || `Column ${idx + 1}`,
+    sortable: col.sortable ?? false,
+    filterable: col.filterable ?? false,
+  }))
+
+  // Normalize rows: ensure each row has an id and map label-based keys to column ids
+  const rawRows = node.attrs.rows || []
+  const rows: Row[] = rawRows.map((row: any, idx: number) => {
+    const normalizedRow: Row = {
+      id: row.id || `row${idx}`,
+    }
+
+    // Map both id-based and label-based keys to column ids
+    columns.forEach((col) => {
+      // Try to get value by column id first, then by label
+      normalizedRow[col.id] = row[col.id] ?? row[col.label] ?? ''
+    })
+
+    return normalizedRow
+  })
 
   // Detect theme
   useEffect(() => {

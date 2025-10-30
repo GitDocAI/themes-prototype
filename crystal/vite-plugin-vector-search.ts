@@ -264,7 +264,6 @@ export default function vectorSearchPlugin(): Plugin {
           if (chunks.length > 0) {
             allChunks.push(...chunks)
             processedPages++
-            console.log(`  ✓ ${pagePath} → ${chunks.length} chunks`)
           }
         } catch (error) {
           console.warn(`  ⚠️  Failed to process ${filePath}:`, error)

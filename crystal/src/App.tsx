@@ -321,6 +321,7 @@ function App() {
           flexDirection: 'column',
           paddingLeft: '20px',
           paddingRight: '20px',
+          paddingTop: '40px',
           marginLeft: '15px',
           minWidth: 0,
           minHeight: 'calc(100vh - var(--navbar-height, 64px) - var(--tabbar-height, 64px) - 40px)',

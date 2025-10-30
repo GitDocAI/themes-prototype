@@ -17,16 +17,20 @@ export const PageViewer: React.FC<PageViewerProps> = ({ pagePath, theme, isDevMo
   const [pageData, setPageData] = useState<PageData | null>(null)
   const [apiReferenceData, setApiReferenceData] = useState<ApiReferenceProps | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [isVisible, setIsVisible] = useState<boolean>(false)
 
   useEffect(() => {
     const loadPage = async () => {
       if (!pagePath) {
         setPageData(null)
         setApiReferenceData(null)
+        setIsVisible(false)
         return
       }
 
       try {
+        // Reset visibility on page change
+        setIsVisible(false)
         setError(null)
 
         // Check if this is an API reference page
@@ -40,6 +44,8 @@ export const PageViewer: React.FC<PageViewerProps> = ({ pagePath, theme, isDevMo
           } else {
             setApiReferenceData(apiData)
             setPageData(null)
+            // Trigger fade-in after content is set
+            requestAnimationFrame(() => setIsVisible(true))
           }
         } else {
           // Regular page
@@ -52,6 +58,8 @@ export const PageViewer: React.FC<PageViewerProps> = ({ pagePath, theme, isDevMo
           } else {
             setPageData(data)
             setApiReferenceData(null)
+            // Trigger fade-in after content is set
+            requestAnimationFrame(() => setIsVisible(true))
           }
         }
       } catch (err) {
@@ -84,7 +92,15 @@ export const PageViewer: React.FC<PageViewerProps> = ({ pagePath, theme, isDevMo
 
   // Render API reference page
   if (apiReferenceData) {
-    return <ApiReference {...apiReferenceData} theme={theme} />
+    return (
+      <div style={{
+        opacity: isVisible ? 1 : 0,
+        transition: 'opacity 0.3s ease-in-out',
+        minHeight: '400px'
+      }}>
+        <ApiReference {...apiReferenceData} theme={theme} />
+      </div>
+    )
   }
 
   if (!pageData) {
@@ -97,6 +113,9 @@ export const PageViewer: React.FC<PageViewerProps> = ({ pagePath, theme, isDevMo
 
   // If in dev mode, use the editable PageRenderer
   if (isDevMode) {
+    // Detect if pageData is a direct Tiptap document (has type: "doc")
+    const isTiptapDoc = (pageData as any).type === 'doc'
+
     const editablePageData = {
       id: pagePath,
       title: pageData.blocks?.find((b: any) => b.type === 'h1')?.content || 'Untitled',
@@ -106,47 +125,65 @@ export const PageViewer: React.FC<PageViewerProps> = ({ pagePath, theme, isDevMo
         ...block,
         id: `block-${idx}`
       })) : undefined,
-      content: (pageData as any) // Pass the entire JSON object (which should have {type: "doc", content: [...]})
+      // If it's a direct Tiptap doc, use it as content, otherwise pass the whole pageData
+      content: isTiptapDoc ? (pageData as any) : (pageData as any).content || (pageData as any)
     }
 
     return (
-      <PageRenderer
-        pageData={editablePageData as any}
-        theme={theme}
-        isDevMode={true}
-        onSave={async (pageId, updatedData) => {
+      <div style={{
+        opacity: isVisible ? 1 : 0,
+        transition: 'opacity 0.3s ease-in-out',
+        minHeight: '400px'
+      }}>
+        <PageRenderer
+          pageData={editablePageData as any}
+          theme={theme}
+          isDevMode={true}
+          onSave={async (pageId, updatedData) => {
+            // Save in Tiptap JSON format
+            // If the original data was a direct Tiptap doc, save it directly
+            // Otherwise, wrap it in a content object
+            const dataToSave = isTiptapDoc
+              ? updatedData.content  // Save directly as Tiptap doc
+              : { content: updatedData.content } // Wrap in object
 
-          // Save in Tiptap JSON format
-          const dataToSave = {
-            content: updatedData.content
-          }
-
-          // Convert .mdx path to .json for saving
-          const jsonPath = pageId.replace(/\.mdx$/, '.json')
-          await ContentService.saveContent(jsonPath, JSON.stringify(dataToSave, null, 2))
-        }}
-      />
+            // Convert .mdx path to .json for saving
+            const jsonPath = pageId.replace(/\.mdx$/, '.json')
+            await ContentService.saveContent(jsonPath, JSON.stringify(dataToSave, null, 2))
+          }}
+        />
+      </div>
     )
   }
 
   // Preview mode - read-only, use TiptapEditor in non-editable mode
+  // Detect if pageData is a direct Tiptap document (has type: "doc")
+  const isTiptapDoc = (pageData as any).type === 'doc'
+
   const previewPageData = {
     id: pagePath,
     title: pageData.blocks?.find((b: any) => b.type === 'h1')?.content || 'Untitled',
     description: '',
     // Support both formats: legacy blocks array or new Tiptap content
     blocks: pageData.blocks,
-    content: (pageData as any) // Pass the entire JSON object (which should have {type: "doc", content: [...]})
+    // If it's a direct Tiptap doc, use it as content, otherwise pass the whole pageData
+    content: isTiptapDoc ? (pageData as any) : (pageData as any).content || (pageData as any)
   }
 
   return (
-    <PageRenderer
-      pageData={previewPageData as any}
-      theme={theme}
-      isDevMode={false}
-      onSave={async () => {
-        // No-op in preview mode
-      }}
-    />
+    <div style={{
+      opacity: isVisible ? 1 : 0,
+      transition: 'opacity 0.3s ease-in-out',
+      minHeight: '400px'
+    }}>
+      <PageRenderer
+        pageData={previewPageData as any}
+        theme={theme}
+        isDevMode={false}
+        onSave={async () => {
+          // No-op in preview mode
+        }}
+      />
+    </div>
   )
 }

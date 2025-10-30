@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { configLoader } from '../services/configLoader'
 import { useConfig } from '../hooks/useConfig'
+import { fetchConfig } from '../utils/backendUtils'
 
 interface SettingsSidebarProps {
   theme: 'light' | 'dark'
@@ -53,8 +54,7 @@ export const SettingsSidebar: React.FC<SettingsSidebarProps> = ({
   useEffect(() => {
     const loadConfig = async () => {
       try {
-        const response = await fetch('/gitdocai.config.json')
-        const data = await response.json()
+        const data = await fetchConfig()
         const hasBanner = !!data.banner
         setBannerEnabled(hasBanner)
         setConfig({
@@ -79,8 +79,7 @@ export const SettingsSidebar: React.FC<SettingsSidebarProps> = ({
 
     try {
       // Read the current full config to merge with our changes
-      const currentConfigResponse = await fetch('/gitdocai.config.json')
-      const currentFullConfig = await currentConfigResponse.json()
+      const currentFullConfig = await fetchConfig()
 
       // Merge only the fields we're managing, keeping others intact
       const updatedConfig = {

@@ -122,7 +122,6 @@ class ConfigLoader {
   }
 
   private async fetchConfig(): Promise<GitDocAIConfig> {
-
     const response = await fetch('/gitdocai.config.json')
     if (!response.ok) {
       throw new Error(`Failed to load config: ${response.statusText}`)

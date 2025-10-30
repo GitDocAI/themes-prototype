@@ -3,6 +3,10 @@
  * Handles saving content to filesystem or API
  */
 
+import { pageLoader } from './pageLoader'
+import { apiReferenceLoader } from './apiReferenceLoader'
+import { configLoader } from './configLoader'
+
 export class ContentService {
   private static getBackendUrl(): string {
     return import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080/api'
@@ -29,6 +33,12 @@ export class ContentService {
       console.error('[ContentService] Error response:', errorText)
       throw new Error(`Failed to save content: ${response.statusText} - ${errorText}`)
     }
+
+    // Invalidate cache after successful save
+    pageLoader.invalidateCache(docId)
+    apiReferenceLoader.invalidateCache(docId)
+
+    console.log(`[ContentService] Content saved and cache invalidated for: ${docId}`)
   }
 
   /**
@@ -49,5 +59,10 @@ export class ContentService {
       const errorText = await response.text()
       throw new Error(`Failed to save configuration: ${response.statusText} - ${errorText}`)
     }
+
+    // Reload config after successful save to invalidate cache
+    await configLoader.reloadConfig()
+
+    console.log('[ContentService] Configuration saved and cache reloaded')
   }
 }

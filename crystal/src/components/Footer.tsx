@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { configLoader } from '../services/configLoader'
 import { useConfig } from '../hooks/useConfig'
+import { fetchConfig } from '../utils/backendUtils'
 
 interface FooterItem {
   type: string
@@ -55,8 +56,7 @@ export const Footer: React.FC<FooterProps> = ({ theme, isDevMode = false }) => {
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080/api'
 
       // Fetch current config
-      const response = await fetch('/gitdocai.config.json')
-      const config = await response.json()
+      const config = await fetchConfig()
 
       // Update site name
       config.name = editingSiteNameValue
@@ -112,8 +112,7 @@ export const Footer: React.FC<FooterProps> = ({ theme, isDevMode = false }) => {
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080/api'
 
       // Fetch current config
-      const response = await fetch('/gitdocai.config.json')
-      const config = await response.json()
+      const config = await fetchConfig()
 
       // Remove the footer item
       if (config.footer) {
@@ -148,8 +147,7 @@ export const Footer: React.FC<FooterProps> = ({ theme, isDevMode = false }) => {
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080/api'
 
       // Fetch current config
-      const response = await fetch('/gitdocai.config.json')
-      const config = await response.json()
+      const config = await fetchConfig()
 
       if (!config.footer) {
         config.footer = []
@@ -227,8 +225,7 @@ export const Footer: React.FC<FooterProps> = ({ theme, isDevMode = false }) => {
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080/api'
 
       // Fetch current config
-      const response = await fetch('/gitdocai.config.json')
-      const config = await response.json()
+      const config = await fetchConfig()
 
       // Reorder items
       const updatedFooterItems = [...footerItems]

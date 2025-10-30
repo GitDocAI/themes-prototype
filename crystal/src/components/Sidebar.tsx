@@ -5,6 +5,7 @@ import { DeleteConfirmModal } from './DeleteConfirmModal'
 import { PageModal } from './PageModal'
 import { GroupModal } from './GroupModal'
 import { configLoader } from '../services/configLoader'
+import { fetchConfig } from '../utils/backendUtils'
 
 interface SidebarProps {
   items: NavigationItem[]
@@ -128,8 +129,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080/api'
 
       // Fetch current config
-      const response = await fetch('/gitdocai.config.json')
-      const config = await response.json()
+      const config = await fetchConfig()
 
       // Find the page and its group to calculate new path
       let groupTitle = ''
@@ -225,8 +225,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080/api'
 
       // Fetch current config
-      const response = await fetch('/gitdocai.config.json')
-      const config = await response.json()
+      const config = await fetchConfig()
 
       // Find and remove the page
       if (config.navigation?.versions) {
@@ -281,8 +280,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080/api'
 
       // Fetch current config
-      const response = await fetch('/gitdocai.config.json')
-      const config = await response.json()
+      const config = await fetchConfig()
 
       // Validate that page doesn't already exist in this group
       if (config.navigation?.versions) {
@@ -390,8 +388,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080/api'
 
       // Fetch current config
-      const response = await fetch('/gitdocai.config.json')
-      const config = await response.json()
+      const config = await fetchConfig()
 
       // Find and update the group title
       if (config.navigation?.versions) {
@@ -451,8 +448,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080/api'
 
       // Fetch current config
-      const response = await fetch('/gitdocai.config.json')
-      const config = await response.json()
+      const config = await fetchConfig()
 
       // Find and remove the group
       if (config.navigation?.versions) {
@@ -500,8 +496,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080/api'
 
       // Fetch current config
-      const response = await fetch('/gitdocai.config.json')
-      const config = await response.json()
+      const config = await fetchConfig()
 
       // Validate that group doesn't already exist
       if (config.navigation?.versions) {
@@ -572,8 +567,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080/api'
 
       // Fetch current config
-      const response = await fetch('/gitdocai.config.json')
-      const config = await response.json()
+      const config = await fetchConfig()
 
       // Reorder groups
       if (config.navigation?.versions) {
@@ -638,8 +632,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080/api'
 
       // Fetch current config
-      const response = await fetch('/gitdocai.config.json')
-      const config = await response.json()
+      const config = await fetchConfig()
 
       // Reorder pages within the same group
       if (config.navigation?.versions) {
