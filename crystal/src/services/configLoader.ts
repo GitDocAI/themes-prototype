@@ -122,7 +122,9 @@ class ConfigLoader {
   }
 
   private async fetchConfig(): Promise<GitDocAIConfig> {
-    const response = await fetch('/gitdocai.config.json')
+    // Add timestamp to URL for cache busting
+    const cacheBuster = `?t=${Date.now()}`
+    const response = await fetch(`/gitdocai.config.json${cacheBuster}`)
     if (!response.ok) {
       throw new Error(`Failed to load config: ${response.statusText}`)
     }

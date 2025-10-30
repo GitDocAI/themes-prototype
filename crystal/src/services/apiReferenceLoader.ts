@@ -24,8 +24,12 @@ class ApiReferenceLoader {
       // Convert .mdx path to .json
       const jsonPath = getApiReferenceJsonPath(pagePath)
 
+      // Add timestamp to URL for cache busting
+      const cacheBuster = `?t=${Date.now()}`
+      const urlWithCacheBuster = `${jsonPath}${cacheBuster}`
+
       // Fetch from public folder with cache control headers
-      const response = await fetch(jsonPath, {
+      const response = await fetch(urlWithCacheBuster, {
         cache: 'no-cache', // Force fresh fetch every time
         headers: {
           'Cache-Control': 'no-cache',

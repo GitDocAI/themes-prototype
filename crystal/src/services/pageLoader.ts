@@ -35,8 +35,12 @@ class PageLoader {
       // Convert .mdx to .json
       const jsonPath = pagePath.replace(/\.mdx$/, '.json')
 
+      // Add timestamp to URL for cache busting
+      const cacheBuster = `?t=${Date.now()}`
+      const urlWithCacheBuster = `${jsonPath}${cacheBuster}`
+
       // Fetch from public folder with cache control headers
-      const response = await fetch(jsonPath, {
+      const response = await fetch(urlWithCacheBuster, {
         cache: 'no-cache', // Force fresh fetch every time
         headers: {
           'Cache-Control': 'no-cache',
