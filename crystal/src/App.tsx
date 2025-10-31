@@ -47,18 +47,21 @@ function App() {
   useEffect(() => {
   }, [rightPanelContent])
 
-  // Keyboard shortcut for search (Cmd+K or Ctrl+K)
+  // Keyboard shortcut for search (Cmd+K or Ctrl+K) - Only in production mode
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault()
-        setShowSearchModal(true)
+        // Only open search modal in production mode
+        if (isProductionMode) {
+          setShowSearchModal(true)
+        }
       }
     }
 
     document.addEventListener('keydown', handleKeyDown)
     return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [])
+  }, [isProductionMode])
 
   // Initialize navigation from URL, localStorage, or defaults
   useEffect(() => {

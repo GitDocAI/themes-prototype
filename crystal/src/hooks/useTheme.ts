@@ -27,6 +27,7 @@ export const useTheme = () => {
         // Apply default theme without config
         document.body.style.backgroundColor = '#ffffff'
         document.body.style.color = '#111827'
+        document.body.setAttribute('data-theme', 'light')
       }
     }
 
@@ -47,6 +48,9 @@ export const useTheme = () => {
     document.documentElement.style.setProperty('--text-color', textColor)
     document.body.style.backgroundColor = backgroundColor
     document.body.style.color = textColor
+
+    // Set data-theme attribute for scrollbar styling
+    document.body.setAttribute('data-theme', newTheme)
 
     // Update favicon
     const favicon = configLoader.getFavicon()
