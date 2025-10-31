@@ -29,7 +29,7 @@ function App() {
   const viteMode = import.meta.env.VITE_MODE || 'production'
   const isProductionMode = viteMode === 'production'
   const isDevEnvironment = viteMode === 'dev' // true only in dev mode (allows uploads)
-  const [isDevMode, setIsDevMode] = useState<boolean>(false) // Always start with editing disabled
+  const [isDevMode, setIsDevMode] = useState<boolean>(!isProductionMode) // Enabled by default in dev/preview, disabled in production
   const [isSettingsSidebarOpen, setIsSettingsSidebarOpen] = useState<boolean>(false)
   const [error] = useState<string | null>(null)
   const [currentVersion, setCurrentVersion] = useState<string>('')
