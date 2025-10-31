@@ -108,10 +108,10 @@ export const Navbar: React.FC<NavbarProps> = ({ theme, onThemeChange, onVersionC
       }
 
       // Save config
-      const saveResponse = await fetch(`${backendUrl}/docs/gitdocai.config.json`, {
+      const saveResponse = await fetch(`${backendUrl}/config`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content: JSON.stringify(config, null, 2) }),
+        body: JSON.stringify(config),
       })
 
       if (!saveResponse.ok) {
@@ -158,10 +158,10 @@ export const Navbar: React.FC<NavbarProps> = ({ theme, onThemeChange, onVersionC
       }
 
       // Save config
-      const saveResponse = await fetch(`${backendUrl}/docs/gitdocai.config.json`, {
+      const saveResponse = await fetch(`${backendUrl}/config`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content: JSON.stringify(config, null, 2) }),
+        body: JSON.stringify(config),
       })
 
       if (!saveResponse.ok) {
@@ -228,10 +228,10 @@ export const Navbar: React.FC<NavbarProps> = ({ theme, onThemeChange, onVersionC
       config.navbar = updatedNavItems
 
       // Save config
-      const saveResponse = await fetch(`${backendUrl}/docs/gitdocai.config.json`, {
+      const saveResponse = await fetch(`${backendUrl}/config`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content: JSON.stringify(config, null, 2) }),
+        body: JSON.stringify(config),
       })
 
       if (!saveResponse.ok) {

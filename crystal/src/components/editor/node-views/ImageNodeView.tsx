@@ -282,6 +282,7 @@ interface ImageModalProps {
 }
 
 const ImageModal: React.FC<ImageModalProps> = ({ theme, src, alt, caption, type, onSave, onCancel }) => {
+  const isProduction = import.meta.env.MODE === 'production' || import.meta.env.PROD
   const [imageType, setImageType] = useState<'url' | 'local'>(type)
   const [imageSrc, setImageSrc] = useState<string>(src)
   const [imageAlt, setImageAlt] = useState<string>(alt)
@@ -417,61 +418,63 @@ const ImageModal: React.FC<ImageModalProps> = ({ theme, src, alt, caption, type,
         </h3>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          {/* Image Type Selection */}
-          <div>
-            <label
-              style={{
-                display: 'block',
-                marginBottom: '8px',
-                fontSize: '14px',
-                fontWeight: '500',
-                color: theme === 'light' ? '#374151' : '#d1d5db',
-              }}
-            >
-              Image Source Type
-            </label>
-            <div style={{ display: 'flex', gap: '12px' }}>
-              <button
-                onClick={() => setImageType('url')}
+          {/* Image Type Selection - Hidden in production */}
+          {!isProduction && (
+            <div>
+              <label
                 style={{
-                  flex: 1,
-                  padding: '8px 16px',
-                  backgroundColor: imageType === 'url' ? '#3b82f6' : theme === 'light' ? '#f3f4f6' : '#374151',
-                  color: imageType === 'url' ? 'white' : theme === 'light' ? '#374151' : '#d1d5db',
-                  border: 'none',
-                  borderRadius: '6px',
-                  cursor: 'pointer',
+                  display: 'block',
+                  marginBottom: '8px',
                   fontSize: '14px',
                   fontWeight: '500',
-                  transition: 'all 0.2s',
+                  color: theme === 'light' ? '#374151' : '#d1d5db',
                 }}
               >
-                <i className="pi pi-link" style={{ marginRight: '6px' }}></i>
-                URL
-              </button>
-              <button
-                onClick={() => setImageType('local')}
-                style={{
-                  flex: 1,
-                  padding: '8px 16px',
-                  backgroundColor: imageType === 'local' ? '#3b82f6' : theme === 'light' ? '#f3f4f6' : '#374151',
-                  color: imageType === 'local' ? 'white' : theme === 'light' ? '#374151' : '#d1d5db',
-                  border: 'none',
-                  borderRadius: '6px',
-                  cursor: 'pointer',
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  transition: 'all 0.2s',
-                }}
-              >
-                <i className="pi pi-upload" style={{ marginRight: '6px' }}></i>
-                Local File
-              </button>
+                Image Source Type
+              </label>
+              <div style={{ display: 'flex', gap: '12px' }}>
+                <button
+                  onClick={() => setImageType('url')}
+                  style={{
+                    flex: 1,
+                    padding: '8px 16px',
+                    backgroundColor: imageType === 'url' ? '#3b82f6' : theme === 'light' ? '#f3f4f6' : '#374151',
+                    color: imageType === 'url' ? 'white' : theme === 'light' ? '#374151' : '#d1d5db',
+                    border: 'none',
+                    borderRadius: '6px',
+                    cursor: 'pointer',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    transition: 'all 0.2s',
+                  }}
+                >
+                  <i className="pi pi-link" style={{ marginRight: '6px' }}></i>
+                  URL
+                </button>
+                <button
+                  onClick={() => setImageType('local')}
+                  style={{
+                    flex: 1,
+                    padding: '8px 16px',
+                    backgroundColor: imageType === 'local' ? '#3b82f6' : theme === 'light' ? '#f3f4f6' : '#374151',
+                    color: imageType === 'local' ? 'white' : theme === 'light' ? '#374151' : '#d1d5db',
+                    border: 'none',
+                    borderRadius: '6px',
+                    cursor: 'pointer',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    transition: 'all 0.2s',
+                  }}
+                >
+                  <i className="pi pi-upload" style={{ marginRight: '6px' }}></i>
+                  Local File
+                </button>
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Image Source */}
-          {imageType === 'url' ? (
+          {(isProduction || imageType === 'url') ? (
             <div>
               <label
                 style={{

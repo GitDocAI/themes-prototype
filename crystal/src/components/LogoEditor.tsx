@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { fetchConfig } from '../utils/backendUtils'
+import { configLoader } from '../services/configLoader'
 
 interface LogoEditorProps {
   theme: 'light' | 'dark'
@@ -7,6 +8,7 @@ interface LogoEditorProps {
 }
 
 export const LogoEditor: React.FC<LogoEditorProps> = ({ theme, onClose }) => {
+  const isProduction = import.meta.env.MODE === 'production' || import.meta.env.PROD
   const [isLoading, setIsLoading] = useState(true)
   const [lightLogoType, setLightLogoType] = useState<'url' | 'upload'>('url')
   const [darkLogoType, setDarkLogoType] = useState<'url' | 'upload'>('url')
@@ -138,14 +140,12 @@ export const LogoEditor: React.FC<LogoEditorProps> = ({ theme, onClose }) => {
       }
 
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080/api'
-      const response = await fetch(`${backendUrl}/docs/gitdocai.config.json`, {
+      const response = await fetch(`${backendUrl}/config`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          content: JSON.stringify(updatedConfig, null, 2)
-        }),
+        body: JSON.stringify(updatedConfig),
       })
 
       if (!response.ok) {
@@ -156,10 +156,12 @@ export const LogoEditor: React.FC<LogoEditorProps> = ({ theme, onClose }) => {
       setSaveSuccess(true)
       setTimeout(() => setSaveSuccess(false), 2000)
 
-      // Reload page to apply changes
-      setTimeout(() => {
-        window.location.reload()
-      }, 1000)
+      // Wait a bit for the file to be written to disk, then reload config from server
+      setTimeout(async () => {
+        await configLoader.reloadConfig()
+        // Close the modal after config is reloaded
+        onClose()
+      }, 500)
     } catch (error) {
       console.error('Error saving logos:', error)
       setSaveError(error instanceof Error ? error.message : 'Failed to save logos')
@@ -280,48 +282,50 @@ export const LogoEditor: React.FC<LogoEditorProps> = ({ theme, onClose }) => {
             Light Mode Logo
           </h3>
 
-          {/* Type Selection */}
-          <div style={{ display: 'flex', gap: '12px', marginBottom: '16px' }}>
-            <button
-              onClick={() => setLightLogoType('url')}
-              style={{
-                flex: 1,
-                padding: '10px 16px',
-                backgroundColor: lightLogoType === 'url' ? '#3b82f6' : theme === 'light' ? '#f3f4f6' : '#374151',
-                color: lightLogoType === 'url' ? 'white' : theme === 'light' ? '#374151' : '#d1d5db',
-                border: 'none',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                fontSize: '14px',
-                fontWeight: '500',
-                transition: 'all 0.2s',
-              }}
-            >
-              <i className="pi pi-link" style={{ marginRight: '6px' }}></i>
-              URL
-            </button>
-            <button
-              onClick={() => setLightLogoType('upload')}
-              style={{
-                flex: 1,
-                padding: '10px 16px',
-                backgroundColor: lightLogoType === 'upload' ? '#3b82f6' : theme === 'light' ? '#f3f4f6' : '#374151',
-                color: lightLogoType === 'upload' ? 'white' : theme === 'light' ? '#374151' : '#d1d5db',
-                border: 'none',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                fontSize: '14px',
-                fontWeight: '500',
-                transition: 'all 0.2s',
-              }}
-            >
-              <i className="pi pi-upload" style={{ marginRight: '6px' }}></i>
-              Upload
-            </button>
-          </div>
+          {/* Type Selection - Hidden in production */}
+          {!isProduction && (
+            <div style={{ display: 'flex', gap: '12px', marginBottom: '16px' }}>
+              <button
+                onClick={() => setLightLogoType('url')}
+                style={{
+                  flex: 1,
+                  padding: '10px 16px',
+                  backgroundColor: lightLogoType === 'url' ? '#3b82f6' : theme === 'light' ? '#f3f4f6' : '#374151',
+                  color: lightLogoType === 'url' ? 'white' : theme === 'light' ? '#374151' : '#d1d5db',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  transition: 'all 0.2s',
+                }}
+              >
+                <i className="pi pi-link" style={{ marginRight: '6px' }}></i>
+                URL
+              </button>
+              <button
+                onClick={() => setLightLogoType('upload')}
+                style={{
+                  flex: 1,
+                  padding: '10px 16px',
+                  backgroundColor: lightLogoType === 'upload' ? '#3b82f6' : theme === 'light' ? '#f3f4f6' : '#374151',
+                  color: lightLogoType === 'upload' ? 'white' : theme === 'light' ? '#374151' : '#d1d5db',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  transition: 'all 0.2s',
+                }}
+              >
+                <i className="pi pi-upload" style={{ marginRight: '6px' }}></i>
+                Upload
+              </button>
+            </div>
+          )}
 
           {/* URL Input or File Upload */}
-          {lightLogoType === 'url' ? (
+          {(isProduction || lightLogoType === 'url') ? (
             <div>
               <label style={labelStyle}>Logo URL</label>
               <input
@@ -434,48 +438,50 @@ export const LogoEditor: React.FC<LogoEditorProps> = ({ theme, onClose }) => {
             Dark Mode Logo
           </h3>
 
-          {/* Type Selection */}
-          <div style={{ display: 'flex', gap: '12px', marginBottom: '16px' }}>
-            <button
-              onClick={() => setDarkLogoType('url')}
-              style={{
-                flex: 1,
-                padding: '10px 16px',
-                backgroundColor: darkLogoType === 'url' ? '#3b82f6' : theme === 'light' ? '#f3f4f6' : '#374151',
-                color: darkLogoType === 'url' ? 'white' : theme === 'light' ? '#374151' : '#d1d5db',
-                border: 'none',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                fontSize: '14px',
-                fontWeight: '500',
-                transition: 'all 0.2s',
-              }}
-            >
-              <i className="pi pi-link" style={{ marginRight: '6px' }}></i>
-              URL
-            </button>
-            <button
-              onClick={() => setDarkLogoType('upload')}
-              style={{
-                flex: 1,
-                padding: '10px 16px',
-                backgroundColor: darkLogoType === 'upload' ? '#3b82f6' : theme === 'light' ? '#f3f4f6' : '#374151',
-                color: darkLogoType === 'upload' ? 'white' : theme === 'light' ? '#374151' : '#d1d5db',
-                border: 'none',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                fontSize: '14px',
-                fontWeight: '500',
-                transition: 'all 0.2s',
-              }}
-            >
-              <i className="pi pi-upload" style={{ marginRight: '6px' }}></i>
-              Upload
-            </button>
-          </div>
+          {/* Type Selection - Hidden in production */}
+          {!isProduction && (
+            <div style={{ display: 'flex', gap: '12px', marginBottom: '16px' }}>
+              <button
+                onClick={() => setDarkLogoType('url')}
+                style={{
+                  flex: 1,
+                  padding: '10px 16px',
+                  backgroundColor: darkLogoType === 'url' ? '#3b82f6' : theme === 'light' ? '#f3f4f6' : '#374151',
+                  color: darkLogoType === 'url' ? 'white' : theme === 'light' ? '#374151' : '#d1d5db',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  transition: 'all 0.2s',
+                }}
+              >
+                <i className="pi pi-link" style={{ marginRight: '6px' }}></i>
+                URL
+              </button>
+              <button
+                onClick={() => setDarkLogoType('upload')}
+                style={{
+                  flex: 1,
+                  padding: '10px 16px',
+                  backgroundColor: darkLogoType === 'upload' ? '#3b82f6' : theme === 'light' ? '#f3f4f6' : '#374151',
+                  color: darkLogoType === 'upload' ? 'white' : theme === 'light' ? '#374151' : '#d1d5db',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  transition: 'all 0.2s',
+                }}
+              >
+                <i className="pi pi-upload" style={{ marginRight: '6px' }}></i>
+                Upload
+              </button>
+            </div>
+          )}
 
           {/* URL Input or File Upload */}
-          {darkLogoType === 'url' ? (
+          {(isProduction || darkLogoType === 'url') ? (
             <div>
               <label style={labelStyle}>Logo URL</label>
               <input

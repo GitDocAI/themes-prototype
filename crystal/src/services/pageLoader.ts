@@ -23,7 +23,7 @@ class PageLoader {
 
   /**
    * Load page content from JSON file
-   * Converts .mdx path to .json and loads from public folder
+   * Converts .mdx path to .json and loads from public folder via /api/docs/
    */
   async loadPage(pagePath: string): Promise<PageData | null> {
     try {
@@ -32,8 +32,8 @@ class PageLoader {
         return this.cache.get(pagePath)!
       }
 
-      // Convert .mdx to .json
-      const jsonPath = pagePath.replace(/\.mdx$/, '.json')
+      // Convert .mdx to .json and add /api/docs/ prefix
+      const jsonPath = `/api/docs${pagePath.replace(/\.mdx$/, '.json')}`
 
       // Add timestamp to URL for cache busting
       const cacheBuster = `?t=${Date.now()}`

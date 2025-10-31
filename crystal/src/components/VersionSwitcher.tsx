@@ -93,10 +93,10 @@ export const VersionSwitcher: React.FC<VersionSwitcherProps> = ({
       config.navigation.versions.push(newVersion)
 
       // Save config
-      const saveResponse = await fetch(`${backendUrl}/docs/gitdocai.config.json`, {
+      const saveResponse = await fetch(`${backendUrl}/config`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content: JSON.stringify(config, null, 2) }),
+        body: JSON.stringify(config),
       })
 
       if (!saveResponse.ok) {
@@ -132,10 +132,10 @@ export const VersionSwitcher: React.FC<VersionSwitcherProps> = ({
       }
 
       // Save config
-      const saveResponse = await fetch(`${backendUrl}/docs/gitdocai.config.json`, {
+      const saveResponse = await fetch(`${backendUrl}/config`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content: JSON.stringify(config, null, 2) }),
+        body: JSON.stringify(config),
       })
 
       if (!saveResponse.ok) {
@@ -168,10 +168,10 @@ export const VersionSwitcher: React.FC<VersionSwitcherProps> = ({
       }
 
       // Save config
-      const saveResponse = await fetch(`${backendUrl}/docs/gitdocai.config.json`, {
+      const saveResponse = await fetch(`${backendUrl}/config`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content: JSON.stringify(config, null, 2) }),
+        body: JSON.stringify(config),
       })
 
       if (!saveResponse.ok) {
@@ -218,10 +218,10 @@ export const VersionSwitcher: React.FC<VersionSwitcherProps> = ({
       }
 
       // Save config
-      const saveResponse = await fetch(`${backendUrl}/docs/gitdocai.config.json`, {
+      const saveResponse = await fetch(`${backendUrl}/config`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content: JSON.stringify(config, null, 2) }),
+        body: JSON.stringify(config),
       })
 
       if (!saveResponse.ok) {

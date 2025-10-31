@@ -11,10 +11,21 @@ export function getBackendUrl(): string {
 }
 
 /**
- * Fetch gitdocai.config.json from public folder
+ * Fetch gitdocai.config.json from backend API with cache busting
  */
 export async function fetchConfig(): Promise<any> {
-  const response = await fetch('/gitdocai.config.json')
+  const backendUrl = getBackendUrl()
+
+  // Add timestamp to URL for cache busting
+  const cacheBuster = `?t=${Date.now()}`
+  const response = await fetch(`${backendUrl}/config${cacheBuster}`, {
+    cache: 'no-cache',
+    headers: {
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0'
+    }
+  })
 
   if (!response.ok) {
     throw new Error(`Failed to load config: ${response.statusText}`)

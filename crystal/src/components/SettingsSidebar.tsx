@@ -41,11 +41,13 @@ export const SettingsSidebar: React.FC<SettingsSidebarProps> = ({
   isOpen,
   onToggle
 }) => {
+  const isProduction = import.meta.env.MODE === 'production' || import.meta.env.PROD
   const { updateTrigger } = useConfig()
   const [config, setConfig] = useState<GlobalConfig>({})
   const [isSaving, setIsSaving] = useState(false)
   const [saveSuccess, setSaveSuccess] = useState(false)
   const [saveError, setSaveError] = useState<string | null>(null)
+  const [faviconType, setFaviconType] = useState<'url' | 'upload'>('url')
   const faviconInputRef = useRef<HTMLInputElement>(null)
   const [faviconUploading, setFaviconUploading] = useState(false)
   const [bannerEnabled, setBannerEnabled] = useState(false)
@@ -57,11 +59,16 @@ export const SettingsSidebar: React.FC<SettingsSidebarProps> = ({
         const data = await fetchConfig()
         const hasBanner = !!data.banner
         setBannerEnabled(hasBanner)
+
+        // Detect favicon type
+        const favicon = data.favicon || ''
+        setFaviconType(favicon.startsWith('http') ? 'url' : 'upload')
+
         setConfig({
           name: data.name || '',
           colors: data.colors || { light: '', dark: '' },
           defaultThemeMode: data.defaultThemeMode || 'light',
-          favicon: data.favicon || '',
+          favicon: favicon,
           banner: data.banner || undefined,
           background: data.background || { colors: { light: '', dark: '' } }
         })
@@ -99,14 +106,12 @@ export const SettingsSidebar: React.FC<SettingsSidebarProps> = ({
       }
 
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080/api'
-      const response = await fetch(`${backendUrl}/docs/gitdocai.config.json`, {
+      const response = await fetch(`${backendUrl}/config`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          content: JSON.stringify(updatedConfig, null, 2)
-        }),
+        body: JSON.stringify(updatedConfig),
       })
 
       if (!response.ok) {
@@ -117,8 +122,10 @@ export const SettingsSidebar: React.FC<SettingsSidebarProps> = ({
       setSaveSuccess(true)
       setTimeout(() => setSaveSuccess(false), 3000)
 
-      // Update config in memory instead of reloading
-      configLoader.updateConfig(updatedConfig)
+      // Wait a bit for the file to be written to disk, then reload config from server
+      setTimeout(async () => {
+        await configLoader.reloadConfig()
+      }, 500)
     } catch (error) {
       console.error('Error saving config:', error)
       setSaveError(error instanceof Error ? error.message : 'Failed to save configuration')
@@ -521,45 +528,102 @@ export const SettingsSidebar: React.FC<SettingsSidebarProps> = ({
           {/* Favicon */}
           <div style={sectionStyle}>
             <label style={labelStyle}>Favicon</label>
-            <input
-              ref={faviconInputRef}
-              type="file"
-              accept="image/*"
-              onChange={handleFaviconUpload}
-              style={{ display: 'none' }}
-            />
-            <button
-              onClick={() => faviconInputRef.current?.click()}
-              disabled={faviconUploading}
-              style={{
-                width: '100%',
-                padding: '10px 12px',
-                backgroundColor: theme === 'light' ? '#f3f4f6' : '#374151',
-                color: theme === 'light' ? '#374151' : '#d1d5db',
-                border: `1px solid ${theme === 'light' ? '#d1d5db' : '#4b5563'}`,
-                borderRadius: '6px',
-                cursor: faviconUploading ? 'not-allowed' : 'pointer',
-                fontSize: '14px',
-                fontWeight: '500',
-                transition: 'all 0.2s',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '8px'
-              }}
-            >
-              {faviconUploading ? (
-                <>
-                  <i className="pi pi-spin pi-spinner"></i>
-                  Uploading...
-                </>
-              ) : (
-                <>
-                  <i className="pi pi-upload"></i>
-                  {config.favicon ? 'Change Favicon' : 'Upload Favicon'}
-                </>
-              )}
-            </button>
+
+            {/* Type Selection - Hidden in production */}
+            {!isProduction && (
+              <div style={{ display: 'flex', gap: '12px', marginBottom: '12px' }}>
+                <button
+                  onClick={() => setFaviconType('url')}
+                  style={{
+                    flex: 1,
+                    padding: '8px 12px',
+                    backgroundColor: faviconType === 'url' ? '#3b82f6' : theme === 'light' ? '#f3f4f6' : '#374151',
+                    color: faviconType === 'url' ? 'white' : theme === 'light' ? '#374151' : '#d1d5db',
+                    border: 'none',
+                    borderRadius: '6px',
+                    cursor: 'pointer',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    transition: 'all 0.2s',
+                  }}
+                >
+                  <i className="pi pi-link" style={{ marginRight: '6px' }}></i>
+                  URL
+                </button>
+                <button
+                  onClick={() => setFaviconType('upload')}
+                  style={{
+                    flex: 1,
+                    padding: '8px 12px',
+                    backgroundColor: faviconType === 'upload' ? '#3b82f6' : theme === 'light' ? '#f3f4f6' : '#374151',
+                    color: faviconType === 'upload' ? 'white' : theme === 'light' ? '#374151' : '#d1d5db',
+                    border: 'none',
+                    borderRadius: '6px',
+                    cursor: 'pointer',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    transition: 'all 0.2s',
+                  }}
+                >
+                  <i className="pi pi-upload" style={{ marginRight: '6px' }}></i>
+                  Upload
+                </button>
+              </div>
+            )}
+
+            {/* URL Input or File Upload */}
+            {(isProduction || faviconType === 'url') ? (
+              <input
+                type="text"
+                value={config.favicon || ''}
+                onChange={(e) => setConfig(prev => ({ ...prev, favicon: e.target.value }))}
+                placeholder="https://example.com/favicon.ico"
+                style={inputStyle}
+              />
+            ) : (
+              <>
+                <input
+                  ref={faviconInputRef}
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFaviconUpload}
+                  style={{ display: 'none' }}
+                />
+                <button
+                  onClick={() => faviconInputRef.current?.click()}
+                  disabled={faviconUploading}
+                  style={{
+                    width: '100%',
+                    padding: '10px 12px',
+                    backgroundColor: theme === 'light' ? '#f3f4f6' : '#374151',
+                    color: theme === 'light' ? '#374151' : '#d1d5db',
+                    border: `2px dashed ${theme === 'light' ? '#e5e7eb' : '#4b5563'}`,
+                    borderRadius: '6px',
+                    cursor: faviconUploading ? 'not-allowed' : 'pointer',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    transition: 'all 0.2s',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px'
+                  }}
+                >
+                  {faviconUploading ? (
+                    <>
+                      <i className="pi pi-spin pi-spinner"></i>
+                      Uploading...
+                    </>
+                  ) : (
+                    <>
+                      <i className="pi pi-upload"></i>
+                      {config.favicon ? 'Change Favicon' : 'Choose File'}
+                    </>
+                  )}
+                </button>
+              </>
+            )}
+
             {config.favicon && (
               <p style={{
                 marginTop: '8px',

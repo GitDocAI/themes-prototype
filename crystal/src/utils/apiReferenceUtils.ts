@@ -29,8 +29,9 @@ export function titleToSlug(title: string): string {
 /**
  * Build the JSON file path for an API reference page
  * Input: "/v1.0.0/api_reference/applications/create_application.mdx"
- * Output: "/v1.0.0/api_reference/applications/create_application.json"
+ * Output: "/api/docs/v1.0.0/api_reference/applications/create_application.json"
  */
 export function getApiReferenceJsonPath(mdxPath: string): string {
-  return mdxPath.replace(/\.mdx$/, '.json')
+  const jsonPath = mdxPath.replace(/\.mdx$/, '.json')
+  return `/api/docs${jsonPath}`
 }
