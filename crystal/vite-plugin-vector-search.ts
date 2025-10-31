@@ -229,6 +229,12 @@ export default function vectorSearchPlugin(): Plugin {
     name: 'vite-plugin-vector-search',
 
     async buildStart() {
+      // Only run in production mode
+      if (process.env.VITE_MODE !== 'production') {
+        console.log('\n⏭️  Skipping search index generation (not in production mode)\n')
+        return
+      }
+
       console.log('\n🔍 Generating search index with embeddings...\n')
 
       // Initialize embedding model
