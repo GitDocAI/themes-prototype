@@ -4,11 +4,11 @@ import { configLoader } from '../services/configLoader'
 
 interface LogoEditorProps {
   theme: 'light' | 'dark'
+  allowUpload?: boolean
   onClose: () => void
 }
 
-export const LogoEditor: React.FC<LogoEditorProps> = ({ theme, onClose }) => {
-  const isProduction = import.meta.env.MODE === 'production' || import.meta.env.PROD
+export const LogoEditor: React.FC<LogoEditorProps> = ({ theme, allowUpload = false, onClose }) => {
   const [isLoading, setIsLoading] = useState(true)
   const [lightLogoType, setLightLogoType] = useState<'url' | 'upload'>('url')
   const [darkLogoType, setDarkLogoType] = useState<'url' | 'upload'>('url')
@@ -283,7 +283,7 @@ export const LogoEditor: React.FC<LogoEditorProps> = ({ theme, onClose }) => {
           </h3>
 
           {/* Type Selection - Hidden in production */}
-          {!isProduction && (
+          {allowUpload && (
             <div style={{ display: 'flex', gap: '12px', marginBottom: '16px' }}>
               <button
                 onClick={() => setLightLogoType('url')}
@@ -325,7 +325,7 @@ export const LogoEditor: React.FC<LogoEditorProps> = ({ theme, onClose }) => {
           )}
 
           {/* URL Input or File Upload */}
-          {(isProduction || lightLogoType === 'url') ? (
+          {(!allowUpload || lightLogoType === 'url') ? (
             <div>
               <label style={labelStyle}>Logo URL</label>
               <input
@@ -439,7 +439,7 @@ export const LogoEditor: React.FC<LogoEditorProps> = ({ theme, onClose }) => {
           </h3>
 
           {/* Type Selection - Hidden in production */}
-          {!isProduction && (
+          {allowUpload && (
             <div style={{ display: 'flex', gap: '12px', marginBottom: '16px' }}>
               <button
                 onClick={() => setDarkLogoType('url')}
@@ -481,7 +481,7 @@ export const LogoEditor: React.FC<LogoEditorProps> = ({ theme, onClose }) => {
           )}
 
           {/* URL Input or File Upload */}
-          {(isProduction || darkLogoType === 'url') ? (
+          {(!allowUpload || darkLogoType === 'url') ? (
             <div>
               <label style={labelStyle}>Logo URL</label>
               <input

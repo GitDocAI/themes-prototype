@@ -16,9 +16,10 @@ interface PageRendererProps {
   theme: 'light' | 'dark'
   onSave: (pageId: string, updatedData: PageData) => Promise<void>
   isDevMode?: boolean
+  allowUpload?: boolean
 }
 
-export const PageRenderer: React.FC<PageRendererProps> = ({ pageData, theme, onSave, isDevMode = false }) => {
+export const PageRenderer: React.FC<PageRendererProps> = ({ pageData, theme, onSave, isDevMode = false, allowUpload = false }) => {
   // Convert legacy format to Tiptap JSON if needed
   const [content, setContent] = useState<any>(pageData.content || convertBlocksToTiptap(pageData.blocks || []))
   const [hasChanges, setHasChanges] = useState(false)
@@ -182,6 +183,7 @@ export const PageRenderer: React.FC<PageRendererProps> = ({ pageData, theme, onS
         theme={theme}
         onUpdate={handleTiptapUpdate}
         editable={isDevMode}
+        allowUpload={allowUpload}
       />
     </div>
   )

@@ -11,9 +11,10 @@ interface PageViewerProps {
   pagePath: string
   theme: 'light' | 'dark'
   isDevMode?: boolean
+  allowUpload?: boolean
 }
 
-export const PageViewer: React.FC<PageViewerProps> = ({ pagePath, theme, isDevMode = false }) => {
+export const PageViewer: React.FC<PageViewerProps> = ({ pagePath, theme, isDevMode = false, allowUpload = false }) => {
   const [pageData, setPageData] = useState<PageData | null>(null)
   const [apiReferenceData, setApiReferenceData] = useState<ApiReferenceProps | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -139,6 +140,7 @@ export const PageViewer: React.FC<PageViewerProps> = ({ pagePath, theme, isDevMo
           pageData={editablePageData as any}
           theme={theme}
           isDevMode={true}
+          allowUpload={allowUpload}
           onSave={async (pageId, updatedData) => {
             // Save in Tiptap JSON format
             // If the original data was a direct Tiptap doc, save it directly
@@ -180,6 +182,7 @@ export const PageViewer: React.FC<PageViewerProps> = ({ pagePath, theme, isDevMo
         pageData={previewPageData as any}
         theme={theme}
         isDevMode={false}
+        allowUpload={allowUpload}
         onSave={async () => {
           // No-op in preview mode
         }}

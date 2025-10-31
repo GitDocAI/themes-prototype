@@ -28,8 +28,8 @@ function App() {
   useTextHighlight() // Enable search term highlighting from URL
   const viteMode = import.meta.env.VITE_MODE || 'production'
   const isProductionMode = viteMode === 'production'
-  const isDevModeEnv = viteMode === 'dev'
-  const [isDevMode, setIsDevMode] = useState<boolean>(isDevModeEnv)
+  const isDevEnvironment = viteMode === 'dev' // true only in dev mode (allows uploads)
+  const [isDevMode, setIsDevMode] = useState<boolean>(false) // Always start with editing disabled
   const [isSettingsSidebarOpen, setIsSettingsSidebarOpen] = useState<boolean>(false)
   const [error] = useState<string | null>(null)
   const [currentVersion, setCurrentVersion] = useState<string>('')
@@ -276,6 +276,7 @@ function App() {
           onVersionChange={handleVersionChange}
           currentVersion={currentVersion}
           isDevMode={isProductionMode ? false : isDevMode}
+          allowUpload={isDevEnvironment}
           onSearchClick={() => setShowSearchModal(true)}
         />
         {tabs.length > 0 && (
@@ -328,7 +329,7 @@ function App() {
         }}>
           {/* Page Viewer */}
           <div style={{ flex: '1 0 auto' }}>
-            <PageViewer key={currentPath} pagePath={currentPath} theme={theme} isDevMode={isProductionMode ? false : isDevMode} />
+            <PageViewer key={currentPath} pagePath={currentPath} theme={theme} isDevMode={isProductionMode ? false : isDevMode} allowUpload={isDevEnvironment} />
           </div>
 
           {/* Prev/Next Navigation */}
@@ -382,6 +383,7 @@ function App() {
           onDevModeToggle={toggleDevMode}
           isOpen={isSettingsSidebarOpen}
           onToggle={toggleSettingsSidebar}
+          allowUpload={isDevEnvironment}
         />
       )}
 

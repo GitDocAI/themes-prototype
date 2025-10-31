@@ -29,9 +29,17 @@ export function titleToSlug(title: string): string {
 /**
  * Build the JSON file path for an API reference page
  * Input: "/v1.0.0/api_reference/applications/create_application.mdx"
- * Output: "/api/docs/v1.0.0/api_reference/applications/create_application.json"
+ * Output (production): "/v1.0.0/api_reference/applications/create_application.json"
+ * Output (dev/preview): "/api/docs/v1.0.0/api_reference/applications/create_application.json"
  */
-export function getApiReferenceJsonPath(mdxPath: string): string {
+export function getApiReferenceJsonPath(mdxPath: string, isProduction: boolean = false): string {
   const jsonPath = mdxPath.replace(/\.mdx$/, '.json')
-  return `/api/docs${jsonPath}`
+
+  if (isProduction) {
+    // Production: load directly from public folder
+    return jsonPath
+  } else {
+    // Dev/Preview: load from backend API
+    return `/api/docs${jsonPath}`
+  }
 }

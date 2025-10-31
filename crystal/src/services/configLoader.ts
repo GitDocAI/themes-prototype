@@ -65,6 +65,13 @@ class ConfigLoader {
   private config: GitDocAIConfig | null = null
   private loading: Promise<GitDocAIConfig> | null = null
   private listeners: Set<() => void> = new Set()
+  private isProductionMode: boolean
+
+  constructor() {
+    // Check if we're in production mode (VITE_MODE=production or VITE_MODE not set)
+    const viteMode = import.meta.env.VITE_MODE
+    this.isProductionMode = !viteMode || viteMode === 'production'
+  }
 
   /**
    * Adjust color brightness
@@ -122,11 +129,20 @@ class ConfigLoader {
   }
 
   private async fetchConfig(): Promise<GitDocAIConfig> {
-    const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080/api'
+    // Determine the correct path based on mode
+    let configUrl: string
+    if (this.isProductionMode) {
+      // Production: load from public folder
+      configUrl = '/gitdocai.config.json'
+    } else {
+      // Dev/Preview: load from backend API
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080/api'
+      configUrl = `${backendUrl}/config`
+    }
 
     // Add timestamp to URL for cache busting
     const cacheBuster = `?t=${Date.now()}`
-    const response = await fetch(`${backendUrl}/config${cacheBuster}`, {
+    const response = await fetch(`${configUrl}${cacheBuster}`, {
       cache: 'no-cache',
       headers: {
         'Cache-Control': 'no-cache, no-store, must-revalidate',

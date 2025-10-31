@@ -14,6 +14,9 @@ export const ImageNodeView = ({ node, editor, getPos }: NodeViewProps) => {
   const caption = node.attrs.caption
   const type = node.attrs.type
 
+  // Get allowUpload option from the extension
+  const allowUpload = editor.extensionManager.extensions.find((ext: any) => ext.name === 'imageBlock')?.options?.allowUpload || false
+
   // Detect theme
   useEffect(() => {
     const detectTheme = () => {
@@ -188,6 +191,7 @@ export const ImageNodeView = ({ node, editor, getPos }: NodeViewProps) => {
           alt={alt}
           caption={caption}
           type={type}
+          allowUpload={allowUpload}
           onSave={(newSrc, newAlt, newCaption, newType) => {
             if (getPos && editor) {
               const pos = getPos()
@@ -277,12 +281,12 @@ interface ImageModalProps {
   alt: string
   caption: string
   type: 'url' | 'local'
+  allowUpload?: boolean
   onSave: (src: string, alt: string, caption: string, type: 'url' | 'local') => void
   onCancel: () => void
 }
 
-const ImageModal: React.FC<ImageModalProps> = ({ theme, src, alt, caption, type, onSave, onCancel }) => {
-  const isProduction = import.meta.env.MODE === 'production' || import.meta.env.PROD
+const ImageModal: React.FC<ImageModalProps> = ({ theme, src, alt, caption, type, allowUpload = false, onSave, onCancel }) => {
   const [imageType, setImageType] = useState<'url' | 'local'>(type)
   const [imageSrc, setImageSrc] = useState<string>(src)
   const [imageAlt, setImageAlt] = useState<string>(alt)
@@ -419,7 +423,7 @@ const ImageModal: React.FC<ImageModalProps> = ({ theme, src, alt, caption, type,
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           {/* Image Type Selection - Hidden in production */}
-          {!isProduction && (
+          {allowUpload && (
             <div>
               <label
                 style={{
@@ -474,7 +478,7 @@ const ImageModal: React.FC<ImageModalProps> = ({ theme, src, alt, caption, type,
           )}
 
           {/* Image Source */}
-          {(isProduction || imageType === 'url') ? (
+          {(!allowUpload || imageType === 'url') ? (
             <div>
               <label
                 style={{

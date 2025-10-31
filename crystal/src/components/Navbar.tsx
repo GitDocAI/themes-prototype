@@ -11,10 +11,11 @@ interface NavbarProps {
   onVersionChange?: (version: string) => void
   currentVersion?: string
   isDevMode?: boolean
+  allowUpload?: boolean
   onSearchClick?: () => void
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ theme, onThemeChange, onVersionChange, currentVersion, isDevMode = false, onSearchClick = () => {} }) => {
+export const Navbar: React.FC<NavbarProps> = ({ theme, onThemeChange, onVersionChange, currentVersion, isDevMode = false, allowUpload = false, onSearchClick = () => {} }) => {
   const { updateTrigger } = useConfig()
   const [logo, setLogo] = useState('')
   const [siteName, setSiteName] = useState('')
@@ -710,6 +711,7 @@ export const Navbar: React.FC<NavbarProps> = ({ theme, onThemeChange, onVersionC
       {showLogoEditor && (
         <LogoEditor
           theme={theme}
+          allowUpload={allowUpload}
           onClose={() => setShowLogoEditor(false)}
         />
       )}

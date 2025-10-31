@@ -43,10 +43,11 @@ interface TiptapEditorProps {
   theme: 'light' | 'dark'
   onUpdate: (content: any) => void
   editable?: boolean
+  allowUpload?: boolean
   minHeight?: string
 }
 
-export const TiptapEditor: React.FC<TiptapEditorProps> = ({ content, theme, onUpdate, editable = true, minHeight = '200px' }) => {
+export const TiptapEditor: React.FC<TiptapEditorProps> = ({ content, theme, onUpdate, editable = true, allowUpload = false, minHeight = '200px' }) => {
   const toolbarRef = useRef<EditorToolbarRef>(null)
 
   const editor = useEditor({
@@ -84,7 +85,9 @@ export const TiptapEditor: React.FC<TiptapEditorProps> = ({ content, theme, onUp
       TabBlock,
       TabsBlock,
       TableBlock,
-      ImageBlock,
+      ImageBlock.configure({
+        allowUpload,
+      }),
       EndpointBlock,
       LabelBlock,
       CodeGroup,

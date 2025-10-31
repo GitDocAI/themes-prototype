@@ -8,6 +8,13 @@ import { getApiReferenceJsonPath } from '../utils/apiReferenceUtils'
 
 class ApiReferenceLoader {
   private cache: Map<string, ApiReferenceProps> = new Map()
+  private isProductionMode: boolean
+
+  constructor() {
+    // Check if we're in production mode (VITE_MODE=production or VITE_MODE not set)
+    const viteMode = import.meta.env.VITE_MODE
+    this.isProductionMode = !viteMode || viteMode === 'production'
+  }
 
   /**
    * Load API reference data from JSON file
@@ -21,8 +28,8 @@ class ApiReferenceLoader {
         return this.cache.get(pagePath)!
       }
 
-      // Convert .mdx path to .json
-      const jsonPath = getApiReferenceJsonPath(pagePath)
+      // Convert .mdx path to .json (with correct path based on mode)
+      const jsonPath = getApiReferenceJsonPath(pagePath, this.isProductionMode)
 
       // Add timestamp to URL for cache busting
       const cacheBuster = `?t=${Date.now()}`

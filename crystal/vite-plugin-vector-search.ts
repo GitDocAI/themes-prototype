@@ -224,14 +224,16 @@ function parsePathMetadata(filePath: string): { version: string; tab: string } {
 /**
  * Vite plugin to generate search index at build time
  */
-export default function vectorSearchPlugin(): Plugin {
+export default function vectorSearchPlugin(viteMode?: string): Plugin {
   return {
     name: 'vite-plugin-vector-search',
 
     async buildStart() {
-      // Only run in production mode
-      if (process.env.VITE_MODE !== 'production') {
-        console.log('\n⏭️  Skipping search index generation (not in production mode)\n')
+      // Only run in production mode (when VITE_MODE is production or not set)
+      const isProduction = !viteMode || viteMode === 'production'
+
+      if (!isProduction) {
+        console.log(`\n⏭️  Skipping search index generation (VITE_MODE=${viteMode})\n`)
         return
       }
 

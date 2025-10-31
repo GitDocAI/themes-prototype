@@ -9,6 +9,7 @@ interface SettingsSidebarProps {
   onDevModeToggle: () => void
   isOpen: boolean
   onToggle: () => void
+  allowUpload?: boolean
 }
 
 interface GlobalConfig {
@@ -39,9 +40,9 @@ export const SettingsSidebar: React.FC<SettingsSidebarProps> = ({
   isDevMode,
   onDevModeToggle,
   isOpen,
-  onToggle
+  onToggle,
+  allowUpload = false
 }) => {
-  const isProduction = import.meta.env.MODE === 'production' || import.meta.env.PROD
   const { updateTrigger } = useConfig()
   const [config, setConfig] = useState<GlobalConfig>({})
   const [isSaving, setIsSaving] = useState(false)
@@ -260,7 +261,22 @@ export const SettingsSidebar: React.FC<SettingsSidebarProps> = ({
         }}
         title="Settings"
       >
-        <i className="pi pi-cog"></i>
+        <i
+          className="pi pi-cog"
+          style={{
+            animation: 'spin 3s linear infinite'
+          }}
+        ></i>
+        <style>{`
+          @keyframes spin {
+            from {
+              transform: rotate(0deg);
+            }
+            to {
+              transform: rotate(360deg);
+            }
+          }
+        `}</style>
       </button>
 
       {/* Settings Sidebar */}
@@ -530,7 +546,7 @@ export const SettingsSidebar: React.FC<SettingsSidebarProps> = ({
             <label style={labelStyle}>Favicon</label>
 
             {/* Type Selection - Hidden in production */}
-            {!isProduction && (
+            {allowUpload && (
               <div style={{ display: 'flex', gap: '12px', marginBottom: '12px' }}>
                 <button
                   onClick={() => setFaviconType('url')}
@@ -572,7 +588,7 @@ export const SettingsSidebar: React.FC<SettingsSidebarProps> = ({
             )}
 
             {/* URL Input or File Upload */}
-            {(isProduction || faviconType === 'url') ? (
+            {(!allowUpload || faviconType === 'url') ? (
               <input
                 type="text"
                 value={config.favicon || ''}

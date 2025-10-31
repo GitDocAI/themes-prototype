@@ -20,10 +20,18 @@ export interface PageData {
 
 class PageLoader {
   private cache: Map<string, PageData> = new Map()
+  private isProductionMode: boolean
+
+  constructor() {
+    // Check if we're in production mode (VITE_MODE=production or VITE_MODE not set)
+    const viteMode = import.meta.env.VITE_MODE
+    this.isProductionMode = !viteMode || viteMode === 'production'
+  }
 
   /**
    * Load page content from JSON file
-   * Converts .mdx path to .json and loads from public folder via /api/docs/
+   * In production: loads from public folder directly
+   * In dev/preview: loads from backend API
    */
   async loadPage(pagePath: string): Promise<PageData | null> {
     try {
@@ -32,8 +40,15 @@ class PageLoader {
         return this.cache.get(pagePath)!
       }
 
-      // Convert .mdx to .json and add /api/docs/ prefix
-      const jsonPath = `/api/docs${pagePath.replace(/\.mdx$/, '.json')}`
+      // Determine the correct path based on mode
+      let jsonPath: string
+      if (this.isProductionMode) {
+        // Production: load directly from public folder
+        jsonPath = pagePath.replace(/\.mdx$/, '.json')
+      } else {
+        // Dev/Preview: load from backend API
+        jsonPath = `/api/docs${pagePath.replace(/\.mdx$/, '.json')}`
+      }
 
       // Add timestamp to URL for cache busting
       const cacheBuster = `?t=${Date.now()}`

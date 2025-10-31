@@ -8,6 +8,12 @@ export const ImageBlock = Node.create({
   atom: true,
   draggable: true,
 
+  addOptions() {
+    return {
+      allowUpload: false,
+    }
+  },
+
   addAttributes() {
     return {
       src: {

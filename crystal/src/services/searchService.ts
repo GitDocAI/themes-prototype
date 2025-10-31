@@ -175,6 +175,13 @@ class SearchService {
   private isLoading = false
   private embedder: any = null
   private isLoadingModel = false
+  private isProductionMode: boolean
+
+  constructor() {
+    // Check if we're in production mode (VITE_MODE=production or VITE_MODE not set)
+    const viteMode = import.meta.env.VITE_MODE
+    this.isProductionMode = !viteMode || viteMode === 'production'
+  }
 
   /**
    * Load embedding model for generating query embeddings
@@ -251,7 +258,18 @@ class SearchService {
     this.isLoading = true
 
     try {
-      const response = await fetch('/search-index.json')
+      // Determine the correct path based on mode
+      let indexUrl: string
+      if (this.isProductionMode) {
+        // Production: load from public folder
+        indexUrl = '/search-index.json'
+      } else {
+        // Dev/Preview: load from backend API
+        const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080/api'
+        indexUrl = `${backendUrl}/search-index`
+      }
+
+      const response = await fetch(indexUrl)
 
       if (!response.ok) {
         throw new Error('Failed to load search index')
