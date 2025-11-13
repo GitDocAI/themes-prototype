@@ -30,6 +30,7 @@
     "primereact": "^10.9.7",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-router-dom": "^7.9.6",
     "shiki": "^3.13.0",
     "tippy.js": "^6.3.7"
   },
